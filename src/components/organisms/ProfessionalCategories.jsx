@@ -32,14 +32,14 @@ const ProfessionalCategories = () => {
   if (error) return <Error message={error} onRetry={loadProfessionals} />;
 
   return (
-    <section id="professionals-section" className="py-16 bg-background">
+<section id="professionals-section" className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-primary mb-6">
+<h2 className="text-3xl md:text-4xl font-display font-bold text-primary mb-6">
             Depending on your project, you may need:
-</h2>
+          </h2>
         </div>
-
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {professionals.map((professional) => (
             <ProfessionalCard key={professional.Id} professional={professional} />

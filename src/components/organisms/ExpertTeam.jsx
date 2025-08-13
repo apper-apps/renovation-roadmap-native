@@ -33,13 +33,13 @@ const ExpertTeam = () => {
   if (error) return <Error message={error} onRetry={loadProfessionals} />;
 
   return (
-    <section className="py-16 bg-white">
+<section className="py-16 bg-white border-t border-gray-100">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-primary mb-6">
+<h2 className="text-3xl md:text-4xl font-display font-bold text-primary mb-6">
             Meet Your Expert Team
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
             Get to know the professionals who could bring your renovation vision to life. 
             Each brings unique expertise and a commitment to excellence.
           </p>

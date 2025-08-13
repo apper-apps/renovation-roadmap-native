@@ -18,7 +18,7 @@ const HeroSection = () => {
 
   return (
     <section
-    className="relative py-20 bg-gradient-to-br from-primary via-primary/90 to-secondary overflow-hidden">
+className="relative py-20 bg-white overflow-hidden border-b border-gray-100">
     {/* Background Pattern */}
     <div className="absolute inset-0 opacity-10">
         <div
@@ -30,17 +30,17 @@ const HeroSection = () => {
     </div>
     <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center text-white">
-            <h1
-                className="text-4xl md:text-6xl font-display font-bold mb-4 leading-tight">Got a building project{" "}
+<h1
+                className="text-4xl md:text-6xl font-display font-bold mb-4 leading-tight text-primary drop-shadow-sm">Got a building project{" "}
                 <span
-                    className="bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">on your mind?
+                    className="text-secondary">on your mind?
                                 </span>
             </h1>
             <h2
-                className="text-2xl md:text-3xl font-display font-semibold mb-6 text-gray-700">Do you know who to call?
+                className="text-2xl md:text-3xl font-display font-semibold mb-6 text-gray-800 drop-shadow-sm">Do you know who to call?
                           </h2>
             <p
-                className="text-xl md:text-2xl mb-8 text-white/90 leading-relaxed max-w-3xl mx-auto">Whether you're considering minor updates or major renovations, interior or exterior, 
+                className="text-xl md:text-2xl mb-8 text-gray-700 leading-relaxed max-w-3xl mx-auto">Whether you're considering minor updates or major renovations, interior or exterior, 
                             get the peace of mind that comes from partnering with trusted renovation experts.
                           </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

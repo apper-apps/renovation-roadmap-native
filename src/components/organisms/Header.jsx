@@ -8,10 +8,9 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const navigation = [
+const navigation = [
     { name: "Home", path: "/" },
     { name: "Renovation Roadmap", path: "/renovation-roadmap" },
-    { name: "Quizzes", path: "/quizzes" },
     { name: "FAQ", path: "/faq" },
     { name: "Be Inspired", path: "/be-inspired" },
   ];
