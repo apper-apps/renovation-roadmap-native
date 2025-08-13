@@ -43,7 +43,7 @@ const NewsletterSignup = ({ showLeadMagnet = false }) => {
   };
 
   return (
-    <div className="bg-white rounded-xl p-8 shadow-lg">
+<div className="bg-white rounded-xl p-6 shadow-lg max-w-md mx-auto">
       <div className="text-center mb-6">
         <h3 className="text-2xl font-display font-bold text-primary mb-2">
           {showLeadMagnet ? "Download Your Free Renovation Workbook" : "Keep up to date with latest renovation trends"}

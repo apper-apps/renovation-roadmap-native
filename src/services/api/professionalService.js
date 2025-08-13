@@ -1,6 +1,6 @@
-import professionalsData from "@/services/mockData/professionals.json";
+import mockProfessionals from "@/services/mockData/updatedProfessionals.json";
 
-let professionals = [...professionalsData];
+let professionals = [...mockProfessionals];
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 

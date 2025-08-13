@@ -1,0 +1,97 @@
+[
+  {
+    "Id": 1,
+    "title": "Who Should I Call First?",
+    "description": "Builder, Architect, or Interior Designer - find out who to contact first for your project",
+    "estimatedTime": 3,
+    "imageUrl": "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&h=400&fit=crop&crop=center",
+    "questions": [
+      {
+        "id": 1,
+        "question": "What type of project are you planning?",
+        "options": [
+          "Major structural changes or additions",
+          "Interior updates and styling",
+          "New home construction",
+          "Kitchen or bathroom renovation"
+        ]
+      },
+      {
+        "id": 2,
+        "question": "Do you need building consent?",
+        "options": [
+          "Yes, definitely",
+          "Not sure",
+          "No",
+          "What's building consent?"
+        ]
+      },
+      {
+        "id": 3,
+        "question": "What's your main priority?",
+        "options": [
+          "Structural integrity and safety",
+          "Beautiful design and aesthetics",
+          "Functionality and layout",
+          "Cost-effectiveness"
+        ]
+      }
+    ],
+    "results": [
+      {
+        "outcome": "architect_first",
+        "title": "Start with an Architect",
+        "description": "Your project requires design expertise and potentially building consent.",
+        "recommendations": ["JCC Build", "Woven Architects"],
+        "nextSteps": ["Design consultation", "Planning application", "Builder selection"]
+      },
+      {
+        "outcome": "builder_first", 
+        "title": "Start with a Builder",
+        "description": "Your project is construction-focused and needs building expertise.",
+        "recommendations": ["JCC Build"],
+        "nextSteps": ["Site assessment", "Quote preparation", "Timeline planning"]
+      },
+      {
+        "outcome": "designer_first",
+        "title": "Start with an Interior Designer", 
+        "description": "Your project focuses on interior improvements and styling.",
+        "recommendations": ["JCC Build", "Nest Interiors"],
+        "nextSteps": ["Design consultation", "Space planning", "Material selection"]
+      }
+    ]
+  },
+  {
+    "Id": 2,
+    "title": "What's Your Renovator Persona?",
+    "description": "Discover your renovation style and approach",
+    "estimatedTime": 5,
+    "imageUrl": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=400&fit=crop&crop=center",
+    "questions": [
+      {
+        "id": 1,
+        "question": "How do you approach big decisions?",
+        "options": [
+          "Research everything thoroughly first",
+          "Go with my gut feeling",
+          "Ask lots of people for advice",
+          "Plan every detail meticulously"
+        ]
+      }
+    ]
+  },
+  {
+    "Id": 3,
+    "title": "Renovation Readiness Check",
+    "description": "Are you actually ready to start your renovation project?",
+    "estimatedTime": 4,
+    "imageUrl": "https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=600&h=400&fit=crop&crop=center"
+  },
+  {
+    "Id": 4,
+    "title": "Kitchen Showdown",
+    "description": "What's your perfect kitchen layout?", 
+    "estimatedTime": 6,
+    "imageUrl": "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=400&fit=crop&crop=center"
+  }
+]

@@ -1,7 +1,6 @@
-import quizzesData from "@/services/mockData/quizzes.json";
+import mockQuizzes from "@/services/mockData/updatedQuizzes.json";
 
-let quizzes = [...quizzesData];
-
+let quizzes = [...mockQuizzes];
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 export const getQuizzes = async () => {

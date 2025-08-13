@@ -73,10 +73,10 @@ const ProfessionalProfilePage = () => {
             <div className="card text-center lg:text-left">
               <div className="flex flex-col lg:flex-row items-center lg:items-start space-y-6 lg:space-y-0 lg:space-x-8">
                 <div className="flex-shrink-0">
-                  <img 
+<img 
                     src={professional.logoUrl} 
                     alt={`${professional.name} logo`}
-                    className="h-24 max-w-[200px] object-contain"
+                    className="h-16 max-w-[160px] object-contain"
                   />
                 </div>
                 <div className="flex-1">
@@ -97,9 +97,10 @@ const ProfessionalProfilePage = () => {
                       <ApperIcon name="MessageCircle" className="h-4 w-4 mr-2" />
                       Get In Touch
                     </Button>
-                    <Button
+<Button
                       variant="outline"
                       onClick={() => window.open(professional.website, "_blank")}
+                      className="bg-accent text-white border-accent hover:bg-accent/90"
                     >
                       <ApperIcon name="ExternalLink" className="h-4 w-4 mr-2" />
                       Visit Website

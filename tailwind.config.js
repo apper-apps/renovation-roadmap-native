@@ -6,20 +6,20 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
-        primary: '#2C5530',
-        secondary: '#8B6F47',
-        accent: '#E67E22',
+colors: {
+        primary: '#1a365d',
+        secondary: '#2d3748',
+        accent: '#3182ce',
         surface: '#FFFFFF',
-        background: '#F8F6F3',
-        success: '#27AE60',
-        warning: '#F39C12',
-        error: '#E74C3C',
-        info: '#3498DB',
+        background: '#f7fafc',
+        success: '#38a169',
+        warning: '#d69e2e',
+        error: '#e53e3e',
+        info: '#3182ce',
       },
-      fontFamily: {
-        'display': ['Playfair Display', 'serif'],
-        'body': ['Inter', 'sans-serif'],
+fontFamily: {
+        'display': ['Inter', 'system-ui', 'sans-serif'],
+        'body': ['Inter', 'system-ui', 'sans-serif'],
       },
       animation: {
         'slide': 'slide 20s linear infinite',

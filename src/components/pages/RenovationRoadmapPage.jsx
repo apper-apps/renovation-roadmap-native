@@ -112,23 +112,23 @@ const RenovationRoadmapPage = () => {
                     {/* Associated Professionals */}
                     {stage.professionalIds && stage.professionalIds.length > 0 && (
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-3">Professionals You'll Work With:</h4>
+<h4 className="font-semibold text-gray-900 mb-3">Professionals You Could Work With:</h4>
                         <div className="flex flex-wrap gap-3">
-                          {stage.professionalIds.map((profId) => {
+{stage.professionalIds.map((profId) => {
                             const professional = getProfessionalById(profId);
                             return professional ? (
                               <button
                                 key={profId}
                                 onClick={() => navigate(`/professional/${profId}`)}
-                                className="flex items-center bg-gray-50 hover:bg-primary/5 px-4 py-2 rounded-lg transition-colors"
+                                className="flex items-center bg-gray-50 hover:bg-primary/5 px-4 py-3 rounded-lg transition-colors"
                               >
                                 <img 
                                   src={professional.logoUrl} 
                                   alt={`${professional.name} logo`}
-                                  className="h-6 max-w-[80px] object-contain mr-2"
+                                  className="h-8 max-w-[100px] object-contain mr-3"
                                 />
                                 <span className="text-sm font-medium text-gray-700">
-                                  {professional.name}
+                                  A {professional.type.toLowerCase()} like {professional.name}
                                 </span>
                               </button>
                             ) : null;

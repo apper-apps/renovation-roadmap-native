@@ -50,9 +50,9 @@ const ExpertTeam = () => {
             <div key={professional.Id} className="text-center group">
               <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 group-hover:scale-105 mb-4">
                 <img 
-                  src={professional.logoUrl} 
+src={professional.logoUrl} 
                   alt={`${professional.name} logo`}
-                  className="h-16 max-w-full object-contain mx-auto"
+                  className="h-12 max-w-full object-contain mx-auto"
                 />
               </div>
               <Button
