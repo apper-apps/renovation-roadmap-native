@@ -3,10 +3,21 @@ import { useNavigate } from "react-router-dom";
 
 const ProjectCard = ({ project, size = "md" }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [imageError, setImageError] = useState(false);
+  const [imageLoading, setImageLoading] = useState(true);
   const navigate = useNavigate();
 
   const handleClick = () => {
     navigate(`/project/${project.Id}`);
+  };
+
+  const handleImageError = () => {
+    setImageError(true);
+    setImageLoading(false);
+  };
+
+  const handleImageLoad = () => {
+    setImageLoading(false);
   };
 
   const sizeClasses = {
@@ -22,11 +33,27 @@ const ProjectCard = ({ project, size = "md" }) => {
       onMouseLeave={() => setIsHovered(false)}
       onClick={handleClick}
     >
+{imageLoading && (
+        <div className="w-full h-full bg-gray-200 animate-pulse flex items-center justify-center">
+          <div className="text-gray-400 text-sm">Loading...</div>
+        </div>
+      )}
       <img 
-        src={project.imageUrl} 
+        src={imageError ? "/api/placeholder/800/600" : project.imageUrl} 
         alt={project.title}
-        className="w-full h-full object-cover"
+        className={`w-full h-full object-cover transition-opacity duration-300 ${imageLoading ? 'opacity-0' : 'opacity-100'}`}
+        onError={handleImageError}
+        onLoad={handleImageLoad}
+        style={{ display: imageLoading ? 'none' : 'block' }}
       />
+      {imageError && !imageLoading && (
+        <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
+          <div className="text-center text-gray-500">
+            <div className="text-2xl mb-2">🏠</div>
+            <div className="text-sm">Image unavailable</div>
+          </div>
+        </div>
+      )}
       {isHovered && (
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end">
           <div className="p-6 text-white">
