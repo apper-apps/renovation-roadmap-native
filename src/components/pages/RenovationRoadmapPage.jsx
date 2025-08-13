@@ -112,24 +112,28 @@ const RenovationRoadmapPage = () => {
                     {/* Associated Professionals */}
                     {stage.professionalIds && stage.professionalIds.length > 0 && (
                       <div>
-<h4 className="font-semibold text-gray-900 mb-3">Professionals You Could Work With:</h4>
-                        <div className="flex flex-wrap gap-3">
-{stage.professionalIds.map((profId) => {
+<h4 className="font-semibold text-gray-900 mb-4">Professionals You Could Work With:</h4>
+                        <div className="space-y-3">
+                          {stage.professionalIds.map((profId) => {
                             const professional = getProfessionalById(profId);
                             return professional ? (
                               <button
                                 key={profId}
                                 onClick={() => navigate(`/professional/${profId}`)}
-                                className="flex items-center bg-gray-50 hover:bg-primary/5 px-4 py-3 rounded-lg transition-colors"
+                                className="flex items-center justify-between w-full bg-gray-50 hover:bg-primary/5 p-4 rounded-lg transition-colors group"
                               >
-                                <img 
-                                  src={professional.logoUrl} 
-                                  alt={`${professional.name} logo`}
-                                  className="h-8 max-w-[100px] object-contain mr-3"
-                                />
-                                <span className="text-sm font-medium text-gray-700">
-                                  A {professional.type.toLowerCase()} like {professional.name}
-                                </span>
+                                <div className="flex-1">
+                                  <span className="text-sm font-medium text-gray-700 group-hover:text-primary">
+                                    A {professional.type.toLowerCase()} like <strong>{professional.name}</strong>
+                                  </span>
+                                </div>
+                                <div className="ml-4 flex-shrink-0">
+                                  <img 
+                                    src={professional.logoUrl} 
+                                    alt={`${professional.name} logo`}
+                                    className="h-10 max-w-[120px] object-contain"
+                                  />
+                                </div>
                               </button>
                             ) : null;
                           })}
@@ -154,9 +158,9 @@ const RenovationRoadmapPage = () => {
               or download our comprehensive renovation workbook.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
+<Button 
                 variant="accent"
-                onClick={() => navigate("/quiz/who-to-call-first")}
+                onClick={() => navigate("/quiz/1")}
               >
                 <ApperIcon name="Play" className="h-4 w-4 mr-2" />
                 Take Our Quiz

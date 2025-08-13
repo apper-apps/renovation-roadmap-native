@@ -16,8 +16,8 @@ const Header = () => {
     { name: "Be Inspired", path: "/be-inspired" },
   ];
 
-  const handleQuizClick = () => {
-    navigate("/quiz/who-to-call-first");
+const handleQuizClick = () => {
+    navigate("/quiz/1");
     setIsMobileMenuOpen(false);
   };
 
@@ -28,15 +28,15 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3">
-            <div className="bg-gradient-to-br from-primary to-secondary p-2 rounded-lg">
+<Link to="/" className="flex items-center space-x-3">
+            <div className="bg-gradient-to-br from-primary via-accent to-secondary p-3 rounded-xl shadow-lg">
               <ApperIcon name="Home" className="h-8 w-8 text-white" />
             </div>
-            <div>
-              <h1 className="text-2xl font-display font-bold text-primary">
+            <div className="bg-gradient-to-r from-primary to-accent bg-clip-text">
+              <h1 className="text-2xl font-display font-bold text-transparent bg-gradient-to-r from-primary to-accent bg-clip-text">
                 Renovation Roadmap
               </h1>
-              <p className="text-sm text-gray-600">For the Waikato Region</p>
+              <p className="text-sm text-primary/70 font-medium">For the Waikato Region</p>
             </div>
           </Link>
 

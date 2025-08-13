@@ -62,16 +62,36 @@ const QuizInterface = ({ quizId }) => {
   };
 
   const calculateResults = () => {
-    if (!quiz.results) {
+if (!quiz.results) {
       setResults([]);
       setShowResults(true);
       return;
     }
 
-    // Simple scoring system - in real app this would be more sophisticated
+    // For the "Who Should I Call First" quiz, use predefined results
+    if (quiz.Id === 1) {
+      // Simple logic based on first question answer for demo
+      const firstAnswer = answers[1];
+      let recommendedProfessionals = [];
+      
+      if (firstAnswer === "Major structural changes or additions") {
+        recommendedProfessionals = professionals.filter(p => p.Id === 2 || p.Id === 1); // Architect + Builder
+      } else if (firstAnswer === "Interior updates and styling") {
+        recommendedProfessionals = professionals.filter(p => p.Id === 3 || p.Id === 1); // Interior Designer + Builder
+      } else {
+        recommendedProfessionals = professionals.filter(p => p.Id === 1 || p.Id === 2); // Builder + Architect
+      }
+      
+      setResults(recommendedProfessionals.slice(0, 2));
+      setShowResults(true);
+      toast.success("Quiz completed! Here are your recommendations.");
+      return;
+    }
+
+    // Simple scoring system for other quizzes
     const scores = {};
     Object.entries(answers).forEach(([questionId, answer]) => {
-      const question = quiz.questions.find(q => q.Id === parseInt(questionId));
+      const question = quiz.questions.find(q => q.id === parseInt(questionId));
       if (question && question.scoring) {
         Object.entries(question.scoring[answer] || {}).forEach(([profId, points]) => {
           scores[profId] = (scores[profId] || 0) + points;

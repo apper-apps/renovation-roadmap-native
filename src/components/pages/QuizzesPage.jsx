@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import QuizCard from "@/components/molecules/QuizCard";
 import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
@@ -6,10 +7,10 @@ import Empty from "@/components/ui/Empty";
 import { getQuizzes } from "@/services/api/quizService";
 
 const QuizzesPage = () => {
+  const navigate = useNavigate();
   const [quizzes, setQuizzes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-
   const loadQuizzes = async () => {
     try {
       setLoading(true);
@@ -114,14 +115,14 @@ const QuizzesPage = () => {
               or view our renovation roadmap for comprehensive guidance.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button 
-                onClick={() => window.location.href = '/faq'}
+<button 
+                onClick={() => navigate('/faq')}
                 className="btn-primary"
               >
                 View FAQ
               </button>
-              <button 
-                onClick={() => window.location.href = '/renovation-roadmap'}
+<button 
+                onClick={() => navigate('/renovation-roadmap')}
                 className="btn-secondary"
               >
                 Renovation Roadmap

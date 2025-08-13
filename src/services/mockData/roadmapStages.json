@@ -10,9 +10,9 @@
       "Gather inspiration and ideas",
       "Research professionals and get initial quotes",
       "Consider financing options",
-      "Plan temporary accommodation if needed"
+"Plan temporary accommodation if needed"
     ],
-    "professionalIds": [2, 3]
+    "professionalIds": [1, 2, 3]
   },
   {
     "Id": 2,
@@ -27,7 +27,7 @@
       "Create detailed specifications",
       "Get final cost estimates"
     ],
-    "professionalIds": [2, 3]
+"professionalIds": [1, 2, 3]
   },
   {
     "Id": 3,
@@ -42,7 +42,7 @@
       "Obtain engineering sign-offs",
       "Secure all required approvals"
     ],
-    "professionalIds": [3, 4]
+"professionalIds": [1, 3, 4]
   },
   {
     "Id": 4,
@@ -57,7 +57,7 @@
       "Arrange temporary services if needed",
       "Conduct pre-start meetings"
     ],
-    "professionalIds": [1]
+"professionalIds": [1]
   },
   {
     "Id": 5,
@@ -72,7 +72,7 @@
       "Interior and exterior finishing",
       "Regular quality inspections"
     ],
-    "professionalIds": [1]
+"professionalIds": [1]
   },
   {
     "Id": 6,
@@ -87,6 +87,6 @@
       "Handover documentation and warranties",
       "Project completion and sign-off"
     ],
-    "professionalIds": [1]
+"professionalIds": [1]
   }
 ]

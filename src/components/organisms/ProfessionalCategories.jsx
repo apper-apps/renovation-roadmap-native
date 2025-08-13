@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ProfessionalCard from "@/components/molecules/ProfessionalCard";
 import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
 import { getProfessionals } from "@/services/api/professionalService";
 
 const ProfessionalCategories = () => {
+  const navigate = useNavigate();
   const [professionals, setProfessionals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -35,13 +37,20 @@ const ProfessionalCategories = () => {
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-display font-bold text-primary mb-6">
             Depending on your project, you may need:
-          </h2>
+</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {professionals.map((professional) => (
             <ProfessionalCard key={professional.Id} professional={professional} />
           ))}
+        </div>
+
+        <div className="text-center bg-white rounded-xl p-8 shadow-sm mb-12">
+          <p className="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
+            But don't worry, you don't need to call all of them! You just need to know who to call first 
+            and then the professionals can guide you from there.
+          </p>
         </div>
 {/* Quiz Section */}
         <div className="mb-16">
@@ -69,8 +78,8 @@ const ProfessionalCategories = () => {
                     <p className="text-gray-600 mb-6 text-lg">
                       Builder, Architect, or Interior Designer - find out who to contact first for your project
                     </p>
-                    <button 
-                      onClick={() => window.location.href = '/quiz/1'}
+<button 
+                      onClick={() => navigate('/quiz/1')}
                       className="bg-accent hover:bg-accent/90 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors inline-flex items-center"
                     >
                       Start Quiz →
@@ -89,8 +98,8 @@ const ProfessionalCategories = () => {
           </div>
 
           {/* Other Quizzes Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer" onClick={() => window.location.href = '/quiz/2'}>
+<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer" onClick={() => navigate('/quiz/2')}>
               <h4 className="text-xl font-display font-semibold text-primary mb-3">
                 What's Your Renovator Persona?
               </h4>
@@ -99,8 +108,7 @@ const ProfessionalCategories = () => {
               </p>
               <span className="text-accent font-medium hover:underline">Take Quiz →</span>
             </div>
-            
-            <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer" onClick={() => window.location.href = '/quiz/3'}>
+<div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer" onClick={() => navigate('/quiz/3')}>
               <h4 className="text-xl font-display font-semibold text-primary mb-3">
                 Renovation Readiness Check
               </h4>
@@ -109,8 +117,7 @@ const ProfessionalCategories = () => {
               </p>
               <span className="text-accent font-medium hover:underline">Take Quiz →</span>
             </div>
-            
-            <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer" onClick={() => window.location.href = '/quiz/4'}>
+<div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer" onClick={() => navigate('/quiz/4')}>
               <h4 className="text-xl font-display font-semibold text-primary mb-3">
                 Kitchen Showdown
               </h4>
@@ -122,12 +129,6 @@ const ProfessionalCategories = () => {
           </div>
         </div>
 
-        <div className="text-center bg-white rounded-xl p-8 shadow-sm">
-          <p className="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
-            But don't worry, you don't need to call all of them! You just need to know who to call first 
-            and then the professionals can guide you from there.
-          </p>
-        </div>
       </div>
     </section>
   );
