@@ -8,19 +8,19 @@ const Button = forwardRef(({
   size = "md", 
   ...props 
 }, ref) => {
-  const baseStyles = "inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 active:scale-95";
+const baseStyles = "inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-200 active:scale-95 shadow-sm";
   
   const variants = {
-    primary: "bg-primary text-white hover:brightness-110",
-    accent: "bg-accent text-white hover:brightness-110",
-    secondary: "bg-secondary text-white hover:brightness-110",
-    outline: "border border-primary text-primary hover:bg-primary hover:text-white",
-    ghost: "text-primary hover:bg-primary/10"
+    primary: "bg-primary text-white hover:brightness-110 shadow-lg",
+    accent: "text-white hover:brightness-110 shadow-lg" + " " + "bg-[#0059E3]",
+    secondary: "bg-secondary text-white hover:brightness-110 shadow-lg",
+    outline: "border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold",
+    ghost: "text-primary hover:bg-primary/10 font-semibold"
   };
 
   const sizes = {
-    sm: "px-3 py-1.5 text-sm",
-    md: "px-6 py-3",
+    sm: "px-4 py-2 text-sm",
+    md: "px-6 py-3 text-base",
     lg: "px-8 py-4 text-lg"
   };
 
