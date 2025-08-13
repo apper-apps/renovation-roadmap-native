@@ -27,8 +27,8 @@ const ProfessionalCard = ({ professional }) => {
   return (
     <div className="professional-card">
       <div className="text-center mb-6">
-        <h3 className="text-2xl font-display font-bold text-primary mb-3">
-          {professional.category}
+<h3 className="text-2xl font-display font-bold text-primary mb-3">
+          A {professional.type} like... {professional.name}
         </h3>
 <div className="flex items-center justify-center mb-4">
           <span className="text-gray-600 mr-2 text-sm">like</span>
@@ -64,16 +64,16 @@ const ProfessionalCard = ({ professional }) => {
           className="flex-1"
           onClick={handleViewProfile}
         >
-          <ApperIcon name="User" className="h-4 w-4 mr-2" />
-          View Profile
+<ApperIcon name="User" className="h-4 w-4 mr-2" />
+          Learn More
         </Button>
 <Button 
           variant="outline" 
           className="w-full bg-accent text-white border-accent hover:bg-accent/90"
           onClick={handleVisitWebsite}
         >
-          <ApperIcon name="ExternalLink" className="h-4 w-4 mr-2" />
-          Website
+<ApperIcon name="ExternalLink" className="h-4 w-4 mr-2" />
+          Visit Website
         </Button>
       </div>
     </div>
