@@ -49,13 +49,13 @@ className="relative py-20 overflow-hidden border-b border-gray-100" style={{ bac
                         name="Play"
                         className="h-5 w-5 mr-2 group-hover:scale-110 transition-transform" />Take Our Quiz
                                 </Button>
-                <Button
+<Button
                     variant="outline"
                     size="lg"
                     onClick={handleViewProfessionals}
-                    className="text-white border-white hover:bg-white hover:text-primary">
+                    className="text-primary border-primary hover:bg-primary hover:text-white">
                     <ApperIcon name="Users" className="h-5 w-5 mr-2" />View Professionals
-                                </Button>
+                </Button>
             </div>
             <div
                 className="mt-12 flex items-center justify-center space-x-8 text-white/75">
