@@ -1,0 +1,122 @@
+[
+  {
+    "Id": 1,
+    "title": "Modern Waikato Family Home",
+    "subtitle": "Complete renovation bringing contemporary style to a 1970s home",
+    "description": "A comprehensive transformation of a dated 1970s family home into a modern, energy-efficient living space. This project involved structural changes, kitchen and bathroom renovations, and landscaping to create a cohesive indoor-outdoor flow.",
+    "imageUrl": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop",
+    "category": "Full Home Renovation",
+    "location": "Hamilton, Waikato",
+    "duration": "8 months",
+    "featured": true,
+    "professionalIds": [1, 2, 3],
+    "features": [
+      "Open plan kitchen and living area",
+      "Energy-efficient double glazing",
+      "Modern bathroom with luxury finishes",
+      "Landscaped outdoor entertaining area",
+      "Smart home automation system",
+      "Sustainable materials throughout"
+    ]
+  },
+  {
+    "Id": 2,
+    "title": "Contemporary Kitchen Renovation", 
+    "subtitle": "Stunning kitchen transformation with premium appliances",
+    "description": "Complete kitchen renovation featuring premium appliances, stone benchtops, and custom cabinetry. The design maximizes storage while creating an entertainer's dream with a large island and seamless indoor-outdoor flow.",
+    "imageUrl": "https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=800&h=600&fit=crop",
+    "category": "Kitchen",
+    "location": "Cambridge, Waikato", 
+    "duration": "6 weeks",
+    "featured": true,
+    "professionalIds": [1, 2],
+    "features": [
+      "Premium stone benchtops",
+      "Custom cabinetry with soft-close drawers",
+      "Professional-grade appliances",
+      "Large kitchen island with seating",
+      "Under-cabinet LED lighting",
+      "Integrated waste management system"
+    ]
+  },
+  {
+    "Id": 3,
+    "title": "Luxury Master Bathroom Suite",
+    "subtitle": "Spa-inspired bathroom with premium finishes",
+    "description": "A luxurious master bathroom renovation featuring a freestanding bathtub, walk-in shower with rainfall head, and premium tile work. The design creates a spa-like retreat with excellent natural light and storage.",
+    "imageUrl": "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&h=600&fit=crop",
+    "category": "Bathroom",
+    "location": "Te Awamutu, Waikato",
+    "duration": "4 weeks", 
+    "featured": true,
+    "professionalIds": [1, 2],
+    "features": [
+      "Freestanding luxury bathtub",
+      "Walk-in shower with rainfall head",
+      "Premium porcelain tiles",
+      "Double vanity with stone tops",
+      "Heated towel rails",
+      "Skylight for natural light"
+    ]
+  },
+  {
+    "Id": 4,
+    "title": "Sustainable Home Extension",
+    "subtitle": "Eco-friendly addition doubling living space",
+    "description": "A thoughtfully designed home extension that doubles the living space while maintaining the original character. Features sustainable materials, solar panels, and rainwater harvesting systems.",
+    "imageUrl": "https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800&h=600&fit=crop",
+    "category": "Extension",
+    "location": "Raglan, Waikato",
+    "duration": "10 months",
+    "featured": true,
+    "professionalIds": [1, 3, 4],
+    "features": [
+      "Solar panel system",
+      "Rainwater harvesting",
+      "Sustainable timber construction",
+      "Passive heating and cooling design",
+      "Native landscaping",
+      "Double glazed windows throughout"
+    ]
+  },
+  {
+    "Id": 5,
+    "title": "Commercial Office Fitout",
+    "subtitle": "Modern workspace design for growing business",
+    "description": "Professional office fitout creating a modern, collaborative workspace. Features include flexible meeting spaces, acoustic solutions, and biophilic design elements to enhance employee wellbeing.",
+    "imageUrl": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop",
+    "category": "Commercial",
+    "location": "Hamilton CBD, Waikato",
+    "duration": "12 weeks",
+    "featured": false,
+    "professionalIds": [2, 4],
+    "features": [
+      "Flexible meeting room configurations",
+      "Acoustic wall panels",
+      "Biophilic design elements",
+      "Energy-efficient LED lighting",
+      "Ergonomic workstations",
+      "Breakout collaboration areas"
+    ]
+  },
+  {
+    "Id": 6,
+    "title": "Heritage Home Restoration",
+    "subtitle": "Careful restoration preserving historical character",
+    "description": "Sensitive restoration of a heritage villa, preserving original features while adding modern conveniences. The project required specialist heritage techniques and materials to maintain authenticity.",
+    "imageUrl": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop",
+    "category": "Restoration",
+    "location": "Matamata, Waikato", 
+    "duration": "14 months",
+    "featured": false,
+    "professionalIds": [1, 3],
+    "features": [
+      "Original kauri floor restoration",
+      "Heritage window restoration",
+      "Traditional plastering techniques",
+      "Period-appropriate fixtures",
+      "Hidden modern services",
+      "Earthquake strengthening"
+    ]
+  }
+]

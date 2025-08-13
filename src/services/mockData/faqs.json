@@ -1,0 +1,52 @@
+[
+  {
+    "Id": 1,
+    "question": "How do I know which professional to contact first?",
+    "answer": "It depends on your project and current stage. If you have a clear vision and plans, start with a builder. If you need design help, contact an architect or interior designer. For complex projects requiring permits, start with a planner. Take our quiz to get a personalized recommendation!"
+  },
+  {
+    "Id": 2,
+    "question": "What's the typical timeline for a renovation project?",
+    "answer": "Timelines vary significantly by project scope. A bathroom renovation might take 4-6 weeks, while a full home renovation could take 6-12 months or more. Planning and design phases typically add 2-6 months before construction begins. Your professional team can provide accurate timelines based on your specific project."
+  },
+  {
+    "Id": 3,
+    "question": "How much should I budget for my renovation?",
+    "answer": "Budget depends on project scope, materials, and finishes chosen. As a rough guide: bathroom renovations $15,000-50,000+, kitchen renovations $25,000-80,000+, full home renovations $100,000-500,000+. Always add a 15-20% contingency for unexpected issues. Our professionals can help you develop a realistic budget."
+  },
+  {
+    "Id": 4,
+    "question": "Do I need building consent for my renovation?",
+    "answer": "Building consent is required for structural changes, additions over 10m², alterations to existing drainage, and changes affecting building compliance. Minor cosmetic work typically doesn't require consent. A planner or architect can advise on consent requirements for your specific project."
+  },
+  {
+    "Id": 5,
+    "question": "How do I prepare for a renovation?",
+    "answer": "Key preparation steps include: setting a realistic budget with contingency, securing financing if needed, developing design concepts, obtaining necessary consents, choosing professionals, planning temporary accommodation if needed, and preparing mentally for the process. Our renovation roadmap provides a detailed guide."
+  },
+  {
+    "Id": 6,
+    "question": "What makes Renovation Roadmap professionals different?",
+    "answer": "Our professionals are invite-only, meaning they've been personally selected based on their reputation, quality of work, and client service. They're all experienced in the Waikato region and understand local requirements, suppliers, and conditions. Each brings proven expertise and a commitment to client satisfaction."
+  },
+  {
+    "Id": 7,
+    "question": "Can I renovate while living in my house?",
+    "answer": "It's possible for some renovations, especially staged projects or single-room renovations. However, major renovations affecting kitchens, bathrooms, or structural elements can be challenging to live through. Consider factors like dust, noise, safety, and access to amenities when deciding. Your builder can advise on the feasibility."
+  },
+  {
+    "Id": 8,
+    "question": "How do I choose the right materials and finishes?",
+    "answer": "Consider your lifestyle, budget, maintenance requirements, and long-term plans. An interior designer can help you select materials that suit your style and needs. Think about durability, especially in high-traffic areas, and choose finishes that will age well. Your designer and builder can recommend quality suppliers in the Waikato region."
+  },
+  {
+    "Id": 9,
+    "question": "What should I expect during the renovation process?",
+    "answer": "Expect some disruption, dust, and noise during construction phases. Good communication with your team is essential. Regular progress meetings help address any concerns quickly. Most professionals provide project management tools or regular updates. The process can be stressful, but the end result makes it worthwhile!"
+  },
+  {
+    "Id": 10,
+    "question": "How do I add value to my property through renovation?",
+    "answer": "Focus on kitchens and bathrooms, which typically offer the best return on investment. Ensure renovations suit your neighborhood's character and price range. Consider energy efficiency improvements, good lighting, and indoor-outdoor flow. An architect or designer can advise on value-adding improvements specific to your property and area."
+  }
+]

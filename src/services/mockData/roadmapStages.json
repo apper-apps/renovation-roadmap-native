@@ -1,0 +1,92 @@
+[
+  {
+    "Id": 1,
+    "title": "Planning & Vision",
+    "description": "Define your renovation goals, establish budget, and create initial concepts. This crucial first stage sets the foundation for your entire project.",
+    "duration": "2-8 weeks",
+    "activities": [
+      "Define renovation goals and priorities",
+      "Set realistic budget with contingency",
+      "Gather inspiration and ideas",
+      "Research professionals and get initial quotes",
+      "Consider financing options",
+      "Plan temporary accommodation if needed"
+    ],
+    "professionalIds": [2, 3]
+  },
+  {
+    "Id": 2,
+    "title": "Design & Documentation",
+    "description": "Work with architects and designers to create detailed plans, select materials, and finalize the design before construction begins.",
+    "duration": "4-12 weeks", 
+    "activities": [
+      "Create architectural drawings and plans",
+      "Develop interior design concepts",
+      "Select materials, finishes, and fixtures",
+      "Finalize engineering and structural details",
+      "Create detailed specifications",
+      "Get final cost estimates"
+    ],
+    "professionalIds": [2, 3]
+  },
+  {
+    "Id": 3,
+    "title": "Consents & Approvals",
+    "description": "Obtain necessary building consents, resource consents, and other approvals required before construction can begin.",
+    "duration": "4-20 weeks",
+    "activities": [
+      "Submit building consent applications",
+      "Apply for resource consent if required",
+      "Coordinate with council requirements",
+      "Address any consent conditions", 
+      "Obtain engineering sign-offs",
+      "Secure all required approvals"
+    ],
+    "professionalIds": [3, 4]
+  },
+  {
+    "Id": 4,
+    "title": "Pre-Construction",
+    "description": "Final preparations before construction begins, including contractor selection, scheduling, and site preparation.",
+    "duration": "2-6 weeks",
+    "activities": [
+      "Select and contract with builder",
+      "Finalize construction schedule",
+      "Order long-lead-time materials",
+      "Set up site facilities and safety",
+      "Arrange temporary services if needed",
+      "Conduct pre-start meetings"
+    ],
+    "professionalIds": [1]
+  },
+  {
+    "Id": 5,
+    "title": "Construction Phase",
+    "description": "The main construction work including demolition, structural work, and installation of new elements according to the approved plans.",
+    "duration": "6-52 weeks",
+    "activities": [
+      "Demolition and site preparation",
+      "Structural and framing work",
+      "Electrical, plumbing, and HVAC rough-in",
+      "Insulation and lining installation",
+      "Interior and exterior finishing",
+      "Regular quality inspections"
+    ],
+    "professionalIds": [1]
+  },
+  {
+    "Id": 6,
+    "title": "Finishing & Handover",
+    "description": "Final inspections, finishing touches, and project completion including handover of all documentation and warranties.",
+    "duration": "2-4 weeks",
+    "activities": [
+      "Final inspections and corrections",
+      "Installation of fixtures and fittings",
+      "Final cleaning and touch-ups",
+      "Code compliance certificate",
+      "Handover documentation and warranties",
+      "Project completion and sign-off"
+    ],
+    "professionalIds": [1]
+  }
+]

@@ -1,0 +1,13 @@
+[
+  {
+    "Id": 1,
+    "professionalId": 1,
+    "name": "Sarah Thompson",
+    "email": "sarah.thompson@email.com",
+    "phone": "027 123 4567",
+    "projectType": "Kitchen Renovation",
+    "budget": "$50,000 - $100,000",
+    "message": "Hi, I'm looking to renovate my kitchen in Hamilton. The current layout is quite dated and I'd love to create a more open plan design. Can we arrange a time to discuss the project?",
+    "createdAt": "2024-01-15T09:30:00Z"
+  }
+]

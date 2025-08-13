@@ -1,0 +1,58 @@
+import { useNavigate } from "react-router-dom";
+import Button from "@/components/atoms/Button";
+import ApperIcon from "@/components/ApperIcon";
+
+const ProfessionalCard = ({ professional }) => {
+  const navigate = useNavigate();
+
+  const handleViewProfile = () => {
+    navigate(`/professional/${professional.Id}`);
+  };
+
+  const handleVisitWebsite = () => {
+    window.open(professional.website, "_blank");
+  };
+
+  return (
+    <div className="professional-card">
+      <div className="text-center mb-6">
+        <h3 className="text-2xl font-display font-bold text-primary mb-3">
+          {professional.category}
+        </h3>
+        <div className="flex items-center justify-center mb-4">
+          <span className="text-gray-600 mr-2">like</span>
+          <img 
+            src={professional.logoUrl} 
+            alt={`${professional.name} logo`}
+            className="h-8 max-w-[120px] object-contain"
+          />
+        </div>
+      </div>
+      
+      <p className="text-gray-700 mb-6 text-center leading-relaxed">
+        {professional.description}
+      </p>
+      
+      <div className="flex flex-col sm:flex-row gap-3">
+        <Button 
+          variant="primary" 
+          className="flex-1"
+          onClick={handleViewProfile}
+        >
+          <ApperIcon name="User" className="h-4 w-4 mr-2" />
+          View Profile
+        </Button>
+        <Button 
+          variant="outline" 
+          className="flex-1"
+          onClick={handleVisitWebsite}
+        >
+          <ApperIcon name="ExternalLink" className="h-4 w-4 mr-2" />
+          Website
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+export default ProfessionalCard;

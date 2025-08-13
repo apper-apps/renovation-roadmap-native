@@ -1,0 +1,46 @@
+[
+  {
+    "Id": 1,
+    "name": "JCC Build",
+    "category": "Builder",
+    "logoUrl": "https://images.unsplash.com/photo-1560472355-a9a6d226963e?w=200&h=80&fit=crop&crop=center",
+    "website": "https://jccbuild.nz/",
+    "description": "End-to-end construction management specializing in new home builds and complex renovations. Client-focused approach with real-time project updates.",
+    "services": "New home builds, renovations & alterations (high-end & complex), end-to-end construction management with Buildertrend project updates for complete transparency.",
+    "email": "enquiries@jccbuild.nz",
+    "status": "active"
+  },
+  {
+    "Id": 2,
+    "name": "Nest Interiors",
+    "category": "Interior Designer", 
+    "logoUrl": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200&h=80&fit=crop&crop=center",
+    "website": "https://nestinteriors.co.nz/",
+    "description": "Human-centered design approach solving layout and flow issues. Specializing in space planning and fixture specifications for residential and commercial projects.",
+    "services": "Space planning, fixture specifications, kitchen & bathroom design, renovations & commercial fitouts with focus on human-centered design solving layout & flow issues.",
+    "email": "hello@nestinteriors.co.nz",
+    "status": "active"
+  },
+  {
+    "Id": 3,
+    "name": "Woven Architects",
+    "category": "Architect",
+    "logoUrl": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=200&h=80&fit=crop&crop=center", 
+    "website": "http://wovenarchitects.co.nz",
+    "description": "Award-winning local architects specializing in custom residential alterations. Sustainable, beautiful design with clear builder-friendly drawings.",
+    "services": "Custom residential alterations & ancillaries, sustainable & beautiful design with clear builder-friendly drawings, collaborative open design approach.",
+    "email": "studio@wovenarchitects.co.nz",
+    "status": "active"
+  },
+  {
+    "Id": 4,
+    "name": "Harrison Grierson",
+    "category": "Planner",
+    "logoUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=200&h=80&fit=crop&crop=center",
+    "website": "https://www.harrisongrierson.com/",
+    "description": "Urban development engineering and design consultancy. Engineering, surveying, planning, and landscape architecture focused on community spaces.",
+    "services": "Urban development engineering & design consultancy, engineering, surveying, planning, urban design, landscape architecture, infrastructure development focused on community spaces.",
+    "email": "info@harrisongrierson.com",
+    "status": "active"
+  }
+]
