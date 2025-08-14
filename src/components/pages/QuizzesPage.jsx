@@ -107,10 +107,11 @@ const QuizzesPage = () => {
                   key={quiz.Id} 
                   quiz={quiz} 
                   onClick={() => navigate(`/quiz/${quiz.Id}`)} 
-                />
+/>
               ))}
             </div>
           </div>
+        </div>
 
         {/* Help Section */}
         <div className="mt-16">
