@@ -46,12 +46,16 @@ const BeInspiredPage = () => {
     { id: "commercial", name: "Commercial", icon: "Building2" },
   ];
 
-  const filteredProjects = selectedFilter === "all" 
+const filteredProjects = selectedFilter === "all" 
     ? projects 
     : projects.filter(project => 
-        project.category?.toLowerCase().includes(selectedFilter.toLowerCase()) ||
-        project.title.toLowerCase().includes(selectedFilter.toLowerCase())
+        project.category?.toLowerCase()?.includes(selectedFilter.toLowerCase()) ||
+        project.title?.toLowerCase()?.includes(selectedFilter.toLowerCase())
       );
+
+  const featuredProjects = filteredProjects.filter(project => project.featured);
+  const regularProjects = filteredProjects.filter(project => !project.featured);
+  const displayProjects = [...featuredProjects, ...regularProjects];
 
   if (loading) return <Loading />;
   if (error) return <Error message={error} onRetry={loadData} />;
@@ -89,25 +93,25 @@ const BeInspiredPage = () => {
         </div>
 
         {/* Featured Project */}
-        {filteredProjects.length > 0 && (
+{displayProjects.length > 0 && displayProjects[0] && (
           <div className="mb-12">
             <div className="relative h-96 rounded-2xl overflow-hidden cursor-pointer group"
-                 onClick={() => navigate(`/project/${filteredProjects[0].Id}`)}>
+                 onClick={() => navigate(`/project/${displayProjects[0].Id}`)}>
               <img 
-                src={filteredProjects[0].imageUrl} 
-                alt={filteredProjects[0].title}
+                src={displayProjects[0].imageUrl || "/api/placeholder/800/600"} 
+                alt={displayProjects[0].title || "Project image"}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent">
                 <div className="absolute bottom-8 left-8 right-8 text-white">
                   <div className="bg-accent text-white text-sm px-3 py-1 rounded-full inline-block mb-4">
-                    Featured Project
+                    {displayProjects[0].featured ? "Featured Project" : "Latest Project"}
                   </div>
                   <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
-                    {filteredProjects[0].title}
+                    {displayProjects[0].title}
                   </h2>
                   <p className="text-lg opacity-90 mb-4 line-clamp-2">
-                    {filteredProjects[0].description}
+                    {displayProjects[0].description}
                   </p>
                   <div className="flex items-center">
                     <ApperIcon name="ArrowRight" className="h-5 w-5 mr-2" />
@@ -132,32 +136,32 @@ const BeInspiredPage = () => {
           />
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.slice(1).map((project) => (
+{displayProjects.slice(1).map((project) => (
               <div key={project.Id} className="group">
                 <ProjectCard project={project} size="md" />
                 <div className="mt-4">
                   <h3 className="text-lg font-display font-semibold text-primary mb-2 group-hover:text-accent transition-colors">
-                    {project.title}
+                    {project.title || "Untitled Project"}
                   </h3>
                   <p className="text-gray-600 text-sm line-clamp-2">
-                    {project.description}
+                    {project.description || "No description available"}
                   </p>
-                  {project.professionalIds && project.professionalIds.length > 0 && (
+                  {project.professionalIds && Array.isArray(project.professionalIds) && project.professionalIds.length > 0 && (
                     <div className="mt-3 flex items-center">
                       <span className="text-xs text-gray-500 mr-2">By:</span>
                       <div className="flex -space-x-1">
                         {project.professionalIds.slice(0, 3).map((profId) => {
-                          const professional = professionals.find(p => p.Id === profId);
+                          const professional = professionals?.find(p => p.Id === profId);
                           return professional ? (
                             <div key={profId} className="relative group/tooltip">
                               <img 
-                                src={professional.logoUrl} 
-                                alt={`${professional.name} logo`}
+                                src={professional.logoUrl || "/api/placeholder/24/24"} 
+                                alt={`${professional.name || "Professional"} logo`}
                                 className="h-6 w-6 rounded-full border-2 border-white object-contain bg-white"
                               />
                               <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover/tooltip:block">
                                 <div className="bg-gray-900 text-white text-xs py-1 px-2 rounded whitespace-nowrap">
-                                  {professional.name}
+                                  {professional.name || "Unknown Professional"}
                                 </div>
                               </div>
                             </div>

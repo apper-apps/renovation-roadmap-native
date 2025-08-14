@@ -22,15 +22,18 @@ export const getFeaturedProjects = async () => {
 export const getProjectsByProfessional = async (professionalId) => {
   await delay(300);
   return projects.filter(project => 
-    project.professionalIds && project.professionalIds.includes(professionalId)
+    project.professionalIds && 
+    Array.isArray(project.professionalIds) && 
+    project.professionalIds.includes(professionalId)
   );
 };
 
 export const createProject = async (projectData) => {
   await delay(400);
+  const maxId = projects.length > 0 ? Math.max(...projects.map(p => p.Id)) : 0;
   const newProject = {
     ...projectData,
-    Id: Math.max(...projects.map(p => p.Id)) + 1,
+    Id: maxId + 1,
     featured: false
   };
   projects.push(newProject);

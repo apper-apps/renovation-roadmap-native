@@ -7,8 +7,10 @@ const ProjectCard = ({ project, size = "md" }) => {
   const [imageLoading, setImageLoading] = useState(true);
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate(`/project/${project.Id}`);
+const handleClick = () => {
+    if (project?.Id) {
+      navigate(`/project/${project.Id}`);
+    }
   };
 
   const handleImageError = () => {
@@ -38,9 +40,14 @@ const ProjectCard = ({ project, size = "md" }) => {
           <div className="text-gray-400 text-sm">Loading...</div>
         </div>
       )}
+{imageLoading && (
+        <div className="absolute inset-0 bg-gray-100 animate-pulse flex items-center justify-center">
+          <div className="text-gray-400 text-sm">Loading...</div>
+        </div>
+      )}
       <img 
-        src={imageError ? "/api/placeholder/800/600" : project.imageUrl} 
-        alt={project.title}
+        src={imageError ? "/api/placeholder/800/600" : (project.imageUrl || "/api/placeholder/800/600")} 
+        alt={project.title || "Project image"}
         className={`w-full h-full object-cover transition-opacity duration-300 ${imageLoading ? 'opacity-0' : 'opacity-100'}`}
         onError={handleImageError}
         onLoad={handleImageLoad}
@@ -54,14 +61,14 @@ const ProjectCard = ({ project, size = "md" }) => {
           </div>
         </div>
       )}
-      {isHovered && (
+      {isHovered && !imageLoading && (
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end">
           <div className="p-6 text-white">
             <h3 className="text-xl font-display font-semibold mb-2">
-              {project.title}
+              {project.title || "Untitled Project"}
             </h3>
             <p className="text-sm opacity-90 line-clamp-2">
-              {project.description}
+              {project.description || "No description available"}
             </p>
           </div>
         </div>
