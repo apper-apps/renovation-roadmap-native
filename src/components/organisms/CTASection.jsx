@@ -15,9 +15,9 @@ const CTASection = () => {
             <h2 className="text-3xl md:text-4xl font-display font-bold text-primary mb-6">
               Ready to Start Your Dream Project?
             </h2>
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+<p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
               Take our quick quiz to discover which professional you should contact first, 
-              or browse our renovation roadmap to understand the complete process.
+              or contact JCC Build for a free consultation to get the conversation going.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -29,13 +29,13 @@ const CTASection = () => {
                 <ApperIcon name="Play" className="h-5 w-5 mr-2" />
                 Take Our Quiz
               </Button>
-              <Button 
+<Button 
                 variant="primary" 
                 size="lg"
-                onClick={() => navigate("/renovation-roadmap")}
+                onClick={() => navigate("/professional/1")}
               >
-                <ApperIcon name="Map" className="h-5 w-5 mr-2" />
-                View Roadmap
+                <ApperIcon name="User" className="h-5 w-5 mr-2" />
+                Contact JCC Build
               </Button>
             </div>
           </div>

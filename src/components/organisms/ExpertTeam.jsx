@@ -47,56 +47,19 @@ Get to know the professionals who could bring your renovation vision to life.
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {professionals.map((professional) => (
 <div key={professional.Id} className="professional-card group cursor-pointer flex flex-col h-full p-8">
-              <div className="flex items-center mb-6">
+              <div className="flex flex-col items-center text-center mb-6">
                 <img 
                   src={professional.logoUrl} 
                   alt={`${professional.name} logo`}
-                  className="h-12 max-w-[120px] object-contain mr-4"
+                  className="h-20 max-w-[160px] object-contain mb-4"
                 />
-                <div className="flex-grow">
+                <div>
                   <h3 className="text-2xl font-display font-bold text-primary mb-1">{professional.name}</h3>
                   <p className="text-accent font-semibold text-lg">{professional.category}</p>
                 </div>
               </div>
               
               <div className="mb-6 flex-grow">
-                <p className="text-gray-700 mb-6 leading-relaxed text-lg">
-                  {professional.description}
-                </p>
-                
-<div className="mb-6">
-                  <h4 className="text-primary font-semibold mb-3 text-lg">Core Services:</h4>
-                  <div className="space-y-2">
-{professional?.services ? (
-                      Array.isArray(professional.services) 
-                        ? professional.services.map((service, index) => (
-                            <div key={index} className="flex items-center text-gray-700">
-                              <div className="w-2 h-2 bg-accent rounded-full mr-3 flex-shrink-0"></div>
-                              <span>{service}</span>
-                            </div>
-                          ))
-                        : typeof professional.services === 'string'
-                        ? professional.services.split(', ').map((service, index) => (
-                            <div key={index} className="flex items-center text-gray-700">
-                              <div className="w-2 h-2 bg-accent rounded-full mr-3 flex-shrink-0"></div>
-                              <span>{service.trim()}</span>
-                            </div>
-                          ))
-                        : (
-                            <div className="flex items-center text-gray-700">
-                              <div className="w-2 h-2 bg-accent rounded-full mr-3 flex-shrink-0"></div>
-                              <span>Services information not available</span>
-                            </div>
-                          )
-                    ) : (
-                        <div className="flex items-center text-gray-700">
-                          <div className="w-2 h-2 bg-accent rounded-full mr-3 flex-shrink-0"></div>
-                          <span>Services information not available</span>
-                        </div>
-                      )
-                    }
-                  </div>
-                </div>
               </div>
               
               <Button
@@ -109,16 +72,6 @@ Get to know the professionals who could bring your renovation vision to life.
               </Button>
             </div>
           ))}
-        </div>
-        <div className="text-center">
-          <Button 
-            variant="accent" 
-            size="lg"
-            onClick={() => navigate("/quiz/who-to-call-first")}
-          >
-            <ApperIcon name="HelpCircle" className="h-5 w-5 mr-2" />
-            Not Sure Who to Call First? Take Our Quiz
-          </Button>
         </div>
       </div>
     </section>
