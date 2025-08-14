@@ -12,9 +12,10 @@
     "logoUrl": "https://content.app-sources.com/s/96040614987359689/uploads/Brand/JCC-B-Logo-sml-3156215.png",
     "website": "https://jccbuild.nz/",
     "phone": "+64 9 123 4567",
-    "email": "info@jccbuild.nz"
+    "email": "info@jccbuild.nz",
+    "status": "active"
   },
-  {
+{
     "Id": 2,
     "name": "Nest Interiors",
     "type": "Interior Designer",
@@ -27,9 +28,10 @@
     "logoUrl": "https://nestinteriors.co.nz/wp-content/uploads/2020/12/NEST-Logo-Plum.svg",
     "website": "https://nestinteriors.co.nz/",
     "phone": "+64 9 234 5678",
-    "email": "hello@nestinteriors.co.nz"
+    "email": "hello@nestinteriors.co.nz",
+    "status": "active"
   },
-  {
+{
     "Id": 3,
     "name": "Woven Architects",
     "type": "Architect",
@@ -42,9 +44,10 @@
     "logoUrl": "https://static.wixstatic.com/media/a19329_2f26de67869f45c9b9ef6994e50b9474~mv2.png/v1/fill/w_90,h_78,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Logo%20full%20whitebigger.png",
     "website": "https://wovenarchitects.co.nz/",
     "phone": "+64 9 345 6789",
-    "email": "studio@wovenarchitects.co.nz"
+    "email": "studio@wovenarchitects.co.nz",
+    "status": "active"
   },
-  {
+{
     "Id": 4,
     "name": "Harrison Grierson",
     "type": "Engineer",
@@ -57,6 +60,7 @@
     "logoUrl": "https://demo.esam.co.nz/images/HG_Logo.png",
     "website": "https://www.harrisongrierson.com/",
     "phone": "+64 9 456 7890",
-    "email": "info@harrisongrierson.com"
+    "email": "info@harrisongrierson.com",
+    "status": "active"
   }
 ]
