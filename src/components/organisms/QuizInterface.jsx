@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Button from "@/components/atoms/Button";
+import ApperIcon from "@/components/ApperIcon";
 import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
-import ApperIcon from "@/components/ApperIcon";
-import { getQuizById } from "@/services/api/quizService";
+import Button from "@/components/atoms/Button";
 import { getProfessionals } from "@/services/api/professionalService";
+import { getQuizById } from "@/services/api/quizService";
 
 const QuizInterface = ({ quizId }) => {
   const [quiz, setQuiz] = useState(null);
@@ -38,14 +38,27 @@ const QuizInterface = ({ quizId }) => {
 
   useEffect(() => {
     loadData();
-  }, [quizId]);
+}, [quizId]);
 
-  const handleAnswer = (questionId, answer) => {
+  // Progress saving effect - must be called before any early returns
+  useEffect(() => {
+    if (quiz?.Id) {
+      const progressData = {
+        currentQuestion,
+        answers,
+        timestamp: Date.now()
+      };
+      sessionStorage.setItem(`quiz_${quiz.Id}_progress`, JSON.stringify(progressData));
+    }
+  }, [currentQuestion, answers, quiz?.Id]);
+
+const handleAnswer = (questionId, answer) => {
     setAnswers(prev => ({
       ...prev,
       [questionId]: answer
     }));
   };
+
 
   const handleNext = () => {
     if (currentQuestion < quiz.questions.length - 1) {
@@ -388,14 +401,6 @@ if (showResults) {
   const canContinue = answers[currentQ.Id];
 
   // Save progress to session storage
-  useEffect(() => {
-    const progressData = {
-      currentQuestion,
-      answers,
-      timestamp: Date.now()
-    };
-    sessionStorage.setItem(`quiz_${quiz.Id}_progress`, JSON.stringify(progressData));
-  }, [currentQuestion, answers, quiz.Id]);
 
   return (
     <div className="max-w-3xl mx-auto">
