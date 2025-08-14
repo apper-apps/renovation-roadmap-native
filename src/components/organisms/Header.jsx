@@ -31,16 +31,16 @@ const handleQuizClick = () => {
             <div className="bg-gradient-to-br from-primary via-accent to-secondary p-3 rounded-xl shadow-lg">
               <ApperIcon name="Home" className="h-8 w-8 text-white" />
             </div>
-            <div className="bg-gradient-to-r from-primary to-accent bg-clip-text">
-              <h1 className="text-2xl font-display font-bold text-transparent bg-gradient-to-r from-primary to-accent bg-clip-text">
+<div className="bg-gradient-to-r from-primary to-accent bg-clip-text">
+              <h1 className="text-2xl font-display font-bold text-accent">
                 Renovation Roadmap
               </h1>
-              <p className="text-sm text-primary/70 font-medium">For the Waikato Region</p>
+              <p className="text-base text-primary/70 font-medium">For Hamilton Homeowners</p>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
+<nav className="hidden lg:flex items-center space-x-8 px-2">
             {navigation.map((item) => (
               <Link
                 key={item.name}

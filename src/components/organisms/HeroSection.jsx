@@ -31,10 +31,9 @@ className="relative py-20 overflow-hidden border-b border-gray-100" style={{ bac
     <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center text-white">
 <h1
-                className="text-4xl md:text-6xl font-display font-bold mb-4 leading-tight text-primary drop-shadow-sm">Got a building project{" "}
-                <span
-                    className="text-secondary">on your mind?
-                                </span>
+className="text-4xl md:text-6xl font-display font-bold mb-4 leading-tight drop-shadow-sm">
+                <div style={{ color: '#000000' }}>Got a building project</div>
+                <div style={{ color: '#0059E3' }}>on your mind?</div>
             </h1>
             <h2
                 className="text-2xl md:text-3xl font-display font-semibold mb-6 text-gray-800 drop-shadow-sm">Do you know who to call?
