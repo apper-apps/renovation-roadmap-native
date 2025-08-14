@@ -44,9 +44,12 @@ const ProfessionalCategories = () => {
             )}
         </div>
         <div className="text-center bg-white rounded-xl p-8 shadow-sm mb-12">
-            <p className="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">But don't worry, you don't need to call all of them! You just need to know who to call first 
-                            and then the professionals can guide you from there.
-                          </p>
+<div className="bg-accent/10 rounded-xl p-6 max-w-4xl mx-auto">
+              <p className="text-xl font-semibold text-primary leading-relaxed text-center">
+                But don't worry, you don't need to call all of them! You just need to know who to call first 
+                and then the professionals can guide you from there.
+              </p>
+            </div>
         </div>
         {/* Quiz Section */}
         <div className="mb-16">
@@ -59,58 +62,64 @@ const ProfessionalCategories = () => {
             {/* Featured Quiz */}
             <div className="mb-12">
                 <div
-                    className="bg-gradient-to-br from-accent/10 to-primary/10 rounded-2xl p-8">
-                    <div className="max-w-4xl mx-auto mb-8">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                            <div>
-                                <div
-                                    className="bg-accent text-white text-sm px-4 py-2 rounded-full inline-block mb-4 font-medium">Featured Quiz
-                                                        </div>
-                                <h3 className="text-3xl font-display font-bold text-primary mb-4">Who Should I Call First?
-                                                        </h3>
-                                <p className="text-gray-600 mb-6 text-lg">Builder, Architect, or Interior Designer - find out who to contact first for your project
-                                                        </p>
-                                <button
-                                    onClick={() => navigate("/quiz/1")}
-                                    className="bg-accent hover:bg-accent/90 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors inline-flex items-center">Start Quiz →
-                                                        </button>
-                            </div>
-                            <div className="relative cursor-pointer" onClick={() => navigate("/quiz/1")}>
-                                <img
-                                    src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop&crop=center"
-                                    alt="Who Should I Call First Quiz"
-                                    className="w-full h-64 object-cover rounded-xl shadow-lg hover:shadow-xl transition-shadow" />
+className="bg-white rounded-2xl p-12 shadow-lg">
+                    <div className="bg-gradient-to-br from-accent/10 to-primary/10 rounded-2xl p-12 mb-12">
+                        <div className="max-w-4xl mx-auto">
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                                <div>
+                                    <div
+                                        className="bg-accent text-white text-sm px-4 py-2 rounded-full inline-block mb-4 font-medium">Featured Quiz
+                                                            </div>
+                                    <h3 className="text-3xl font-display font-bold text-primary mb-4">Who Should I Call First?
+                                                            </h3>
+                                    <p className="text-gray-600 mb-6 text-lg">Builder, Architect, or Interior Designer - find out who to contact first for your project
+                                                            </p>
+                                    <button
+                                        onClick={() => navigate("/quiz/1")}
+                                        className="bg-accent hover:bg-accent/90 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors inline-flex items-center">Start Quiz →
+                                                            </button>
+                                </div>
+                                <div className="relative cursor-pointer" onClick={() => navigate("/quiz/1")}>
+                                    <img
+                                        src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop&crop=center"
+                                        alt="Who Should I Call First Quiz"
+                                        className="w-full h-64 object-cover rounded-xl shadow-lg hover:shadow-xl transition-shadow" />
+                                </div>
                             </div>
                         </div>
                     </div>
-                    {/* Other Quizzes Grid - Now inside the blue background */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div
-                            className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer"
-                            onClick={() => navigate("/quiz/2")}>
-                            <h4 className="text-xl font-display font-semibold text-primary mb-3">What's Your Renovator Persona?
-                                                  </h4>
-                            <p className="text-gray-600 mb-4">Discover your renovation style and approach
-                                                  </p>
-                            <span className="text-accent font-medium hover:underline">Take Quiz →</span>
-                        </div>
-                        <div
-                            className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer"
-                            onClick={() => navigate("/quiz/3")}>
-                            <h4 className="text-xl font-display font-semibold text-primary mb-3">Renovation Readiness Check
-                                                  </h4>
-                            <p className="text-gray-600 mb-4">Are you actually ready to start your renovation project?
-                                                  </p>
-                            <span className="text-accent font-medium hover:underline">Take Quiz →</span>
-                        </div>
-                        <div
-                            className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer"
-                            onClick={() => navigate("/quiz/4")}>
-                            <h4 className="text-xl font-display font-semibold text-primary mb-3">Kitchen Showdown
-                                                  </h4>
-                            <p className="text-gray-600 mb-4">What's your perfect kitchen layout?
-                                                  </p>
-                            <span className="text-accent font-medium hover:underline">Take Quiz →</span>
+                    
+                    {/* Other Quizzes Section */}
+                    <div className="max-w-4xl mx-auto">
+                        <h3 className="text-2xl font-display font-bold text-primary text-center mb-8">Other Quizzes to Try</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div
+                                className="bg-gray-50 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer border"
+                                onClick={() => navigate("/quiz/2")}>
+                                <h4 className="text-xl font-display font-semibold text-primary mb-3">What's Your Renovator Persona?
+                                                      </h4>
+                                <p className="text-gray-600 mb-4">Discover your renovation style and approach
+                                                      </p>
+                                <span className="text-accent font-medium hover:underline">Take Quiz →</span>
+                            </div>
+                            <div
+                                className="bg-gray-50 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer border"
+                                onClick={() => navigate("/quiz/3")}>
+                                <h4 className="text-xl font-display font-semibold text-primary mb-3">Renovation Readiness Check
+                                                      </h4>
+                                <p className="text-gray-600 mb-4">Are you actually ready to start your renovation project?
+                                                      </p>
+                                <span className="text-accent font-medium hover:underline">Take Quiz →</span>
+                            </div>
+                            <div
+                                className="bg-gray-50 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer border"
+                                onClick={() => navigate("/quiz/4")}>
+                                <h4 className="text-xl font-display font-semibold text-primary mb-3">Kitchen Showdown
+                                                      </h4>
+                                <p className="text-gray-600 mb-4">What's your perfect kitchen layout?
+                                                      </p>
+                                <span className="text-accent font-medium hover:underline">Take Quiz →</span>
+                            </div>
                         </div>
                     </div>
                 </div>

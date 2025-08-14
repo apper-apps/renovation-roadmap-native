@@ -30,7 +30,7 @@ const ProfessionalCard = ({ professional }) => {
         <div className="text-sm text-accent font-medium mb-2">
           A {professional.type} like...
         </div>
-        <h3 className="text-2xl font-display font-bold text-primary mb-4">
+        <h3 className="text-3xl font-display font-bold text-primary mb-4" style={{ minHeight: '4.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           {professional.name}
         </h3>
         <div className="flex justify-center mb-4">
@@ -63,15 +63,15 @@ const ProfessionalCard = ({ professional }) => {
 <div className="flex flex-col gap-3 mt-auto">
         <Button 
           variant="primary" 
-          className="flex-1"
+          className="flex-1 bg-accent hover:bg-accent/90"
           onClick={handleViewProfile}
         >
           <ApperIcon name="User" className="h-4 w-4 mr-2" />
           Learn More
         </Button>
         <Button 
-          variant="outline" 
-          className="w-full bg-accent text-white border-accent hover:bg-accent/90"
+          variant="ghost" 
+          className="w-full"
           onClick={handleVisitWebsite}
         >
           <ApperIcon name="ExternalLink" className="h-4 w-4 mr-2" />

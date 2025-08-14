@@ -40,39 +40,47 @@ const loadProfessionals = async () => {
             Meet Your Local Professionals
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
-            Get to know the professionals who could bring your renovation vision to life. 
-            Each brings unique expertise and a commitment to excellence.
+Get to know the professionals who could bring your renovation vision to life.
           </p>
 </div>
 
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {professionals.map((professional) => (
-            <div key={professional.Id} className="professional-card group cursor-pointer flex flex-col h-full" onClick={() => navigate(`/professional/${professional.Id}`)}>
-              <div className="text-center mb-4">
+<div key={professional.Id} className="professional-card group cursor-pointer flex flex-col h-full p-8">
+              <div className="flex items-center mb-6">
                 <img 
                   src={professional.logoUrl} 
                   alt={`${professional.name} logo`}
-                  className="h-12 max-w-full object-contain mx-auto mb-3"
+                  className="h-12 max-w-[120px] object-contain mr-4"
                 />
-                <h3 className="text-lg font-display font-bold text-primary mb-1">{professional.name}</h3>
-                <p className="text-accent font-medium mb-2">{professional.category}</p>
+                <div className="flex-grow">
+                  <h3 className="text-2xl font-display font-bold text-primary mb-1">{professional.name}</h3>
+                  <p className="text-accent font-semibold text-lg">{professional.category}</p>
+                </div>
               </div>
               
-              <div className="mb-4 flex-grow">
-                <p className="text-sm text-gray-600 line-clamp-3 mb-3">
+              <div className="mb-6 flex-grow">
+                <p className="text-gray-700 mb-6 leading-relaxed text-lg">
                   {professional.description}
                 </p>
                 
-                <div className="space-y-1">
-                  <p className="text-xs text-gray-500 font-medium">Services:</p>
-                  <p className="text-xs text-gray-600">{professional.services}</p>
+                <div className="mb-6">
+                  <h4 className="text-primary font-semibold mb-3 text-lg">Core Services:</h4>
+                  <div className="space-y-2">
+                    {professional.services.split(', ').map((service, index) => (
+                      <div key={index} className="flex items-center text-gray-700">
+                        <div className="w-2 h-2 bg-accent rounded-full mr-3 flex-shrink-0"></div>
+                        <span>{service}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
               
               <Button
-                variant="outline"
-                size="sm"
-                className="w-full group-hover:bg-accent group-hover:text-white transition-colors mt-auto"
+                variant="primary"
+                className="w-full bg-accent hover:bg-accent/90 text-white font-semibold py-3"
+                onClick={() => navigate(`/professional/${professional.Id}`)}
               >
                 View Full Profile
                 <ApperIcon name="ArrowRight" className="h-4 w-4 ml-2" />
