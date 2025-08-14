@@ -43,31 +43,64 @@ const ExpertTeam = () => {
             Get to know the professionals who could bring your renovation vision to life. 
             Each brings unique expertise and a commitment to excellence.
           </p>
-        </div>
+</div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {professionals.map((professional) => (
-            <div key={professional.Id} className="text-center group">
-              <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 group-hover:scale-105 mb-4">
+            <div key={professional.Id} className="professional-card group cursor-pointer" onClick={() => navigate(`/professional/${professional.Id}`)}>
+              <div className="text-center mb-4">
                 <img 
-src={professional.logoUrl} 
+                  src={professional.logoUrl} 
                   alt={`${professional.name} logo`}
-                  className="h-12 max-w-full object-contain mx-auto"
+                  className="h-16 max-w-full object-contain mx-auto mb-3"
                 />
+                <h3 className="text-lg font-display font-bold text-primary mb-1">{professional.name}</h3>
+                <p className="text-accent font-medium mb-2">{professional.type}</p>
+                <p className="text-sm text-gray-600 mb-3">{professional.specialty}</p>
+                
+                <div className="flex items-center justify-center gap-1 mb-3">
+                  <div className="flex">
+                    {[...Array(5)].map((_, i) => (
+                      <ApperIcon 
+                        key={i}
+                        name="Star" 
+                        className={`h-4 w-4 ${i < Math.floor(professional.rating) ? 'text-warning fill-current' : 'text-gray-300'}`}
+                      />
+                    ))}
+                  </div>
+                  <span className="text-sm font-medium text-gray-700 ml-1">
+                    {professional.rating} ({professional.reviewCount})
+                  </span>
+                </div>
               </div>
+              
+              <div className="mb-4">
+                <p className="text-sm text-gray-600 line-clamp-3 mb-3">
+                  {professional.description}
+                </p>
+                
+                <div className="space-y-1">
+                  <p className="text-xs text-gray-500 font-medium">Key Services:</p>
+                  {professional.services.slice(0, 2).map((service, index) => (
+                    <p key={index} className="text-xs text-gray-600">• {service}</p>
+                  ))}
+                  {professional.services.length > 2 && (
+                    <p className="text-xs text-accent">+ {professional.services.length - 2} more</p>
+                  )}
+                </div>
+              </div>
+              
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => navigate(`/professional/${professional.Id}`)}
-                className="w-full"
+                className="w-full group-hover:bg-accent group-hover:text-white transition-colors"
               >
+                View Full Profile
                 <ApperIcon name="ArrowRight" className="h-4 w-4 ml-2" />
-                View Profile
               </Button>
             </div>
           ))}
         </div>
-
         <div className="text-center">
           <Button 
             variant="accent" 
