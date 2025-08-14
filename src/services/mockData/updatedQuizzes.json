@@ -3,95 +3,418 @@
     "Id": 1,
     "title": "Who Should I Call First?",
     "description": "Builder, Architect, or Interior Designer - find out who to contact first for your project",
-    "estimatedTime": 3,
+    "estimatedTime": 5,
     "imageUrl": "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&h=400&fit=crop&crop=center",
+    "status": "published",
     "questions": [
       {
-        "id": 1,
+        "Id": 1,
         "question": "What type of project are you planning?",
         "options": [
           "Major structural changes or additions",
-          "Interior updates and styling",
+          "Interior updates and styling", 
           "New home construction",
           "Kitchen or bathroom renovation"
-        ]
+        ],
+        "conditionalLogic": {
+          "Major structural changes or additions": { "nextQuestion": 2, "skipTo": null },
+          "Interior updates and styling": { "nextQuestion": 3, "skipTo": null },
+          "New home construction": { "nextQuestion": 2, "skipTo": null },
+          "Kitchen or bathroom renovation": { "nextQuestion": 4, "skipTo": null }
+        },
+        "scoring": {
+          "Major structural changes or additions": { "architect": 3, "builder": 2 },
+          "Interior updates and styling": { "designer": 3, "builder": 1 },
+          "New home construction": { "architect": 3, "builder": 3 },
+          "Kitchen or bathroom renovation": { "builder": 3, "designer": 2 }
+        }
       },
       {
-        "id": 2,
+        "Id": 2,
         "question": "Do you need building consent?",
         "options": [
           "Yes, definitely",
-          "Not sure",
-          "No",
+          "Not sure - need guidance",
+          "No, minor work only",
           "What's building consent?"
-        ]
+        ],
+        "conditionalLogic": {
+          "Yes, definitely": { "nextQuestion": 5, "skipTo": null },
+          "Not sure - need guidance": { "nextQuestion": 3, "skipTo": null },
+          "No, minor work only": { "nextQuestion": 4, "skipTo": null },
+          "What's building consent?": { "nextQuestion": 5, "skipTo": null }
+        },
+        "scoring": {
+          "Yes, definitely": { "architect": 3, "planner": 2 },
+          "Not sure - need guidance": { "architect": 2, "planner": 3 },
+          "No, minor work only": { "builder": 2 },
+          "What's building consent?": { "planner": 3, "architect": 2 }
+        }
       },
       {
-        "id": 3,
-        "question": "What's your main priority?",
+        "Id": 3,
+        "question": "What's your main focus for interior work?",
         "options": [
-          "Structural integrity and safety",
-          "Beautiful design and aesthetics",
-          "Functionality and layout",
-          "Cost-effectiveness"
-        ]
+          "Complete style transformation",
+          "Functional layout improvements", 
+          "Material and finish selection",
+          "Color and decor coordination"
+        ],
+        "conditionalLogic": {
+          "Complete style transformation": { "nextQuestion": 5, "skipTo": null },
+          "Functional layout improvements": { "nextQuestion": 4, "skipTo": null },
+          "Material and finish selection": { "nextQuestion": null, "skipTo": "results" },
+          "Color and decor coordination": { "nextQuestion": null, "skipTo": "results" }
+        },
+        "scoring": {
+          "Complete style transformation": { "designer": 3, "architect": 1 },
+          "Functional layout improvements": { "architect": 2, "designer": 2 },
+          "Material and finish selection": { "designer": 3, "builder": 1 },
+          "Color and decor coordination": { "designer": 3 }
+        }
+      },
+      {
+        "Id": 4,
+        "question": "What's your renovation timeline?",
+        "options": [
+          "Start immediately - ready to go",
+          "Within 3 months - planning stage",
+          "6-12 months - exploring options",
+          "Just getting ideas for now"
+        ],
+        "conditionalLogic": {
+          "Start immediately - ready to go": { "nextQuestion": 5, "skipTo": null },
+          "Within 3 months - planning stage": { "nextQuestion": 5, "skipTo": null },
+          "6-12 months - exploring options": { "nextQuestion": null, "skipTo": "results" },
+          "Just getting ideas for now": { "nextQuestion": null, "skipTo": "results" }
+        },
+        "scoring": {
+          "Start immediately - ready to go": { "builder": 3 },
+          "Within 3 months - planning stage": { "architect": 2, "builder": 2 },
+          "6-12 months - exploring options": { "architect": 3, "designer": 2 },
+          "Just getting ideas for now": { "designer": 3, "architect": 2 }
+        }
+      },
+      {
+        "Id": 5,
+        "question": "What's your biggest concern about this project?",
+        "options": [
+          "Getting design and permits right",
+          "Managing construction process",
+          "Staying within budget",
+          "Coordinating multiple trades"
+        ],
+        "scoring": {
+          "Getting design and permits right": { "architect": 3, "planner": 2 },
+          "Managing construction process": { "builder": 3 },
+          "Staying within budget": { "builder": 2, "architect": 2 },
+          "Coordinating multiple trades": { "builder": 3, "architect": 1 }
+        }
       }
     ],
-    "results": [
+    "outcomes": [
       {
-        "outcome": "architect_first",
+        "type": "architect_primary",
         "title": "Start with an Architect",
-        "description": "Your project requires design expertise and potentially building consent.",
-        "recommendations": ["JCC Build", "Woven Architects"],
-        "nextSteps": ["Design consultation", "Planning application", "Builder selection"]
+        "description": "Your project needs design expertise and regulatory guidance. An architect will help navigate consent requirements and create detailed plans aligned with renovation roadmap Stage 1: Design & Planning.",
+        "recommendedProfessionals": [2, 1],
+        "explanation": "Based on your responses, you'll benefit from architectural design services first, followed by builder consultation for implementation.",
+        "nextSteps": ["Schedule design consultation", "Review planning requirements", "Develop detailed drawings", "Obtain necessary consents"],
+        "roadmapAlignment": "Stage 1: Design & Planning - Professional design input ensures your vision meets regulatory requirements"
       },
       {
-        "outcome": "builder_first", 
-        "title": "Start with a Builder",
-        "description": "Your project is construction-focused and needs building expertise.",
-        "recommendations": ["JCC Build"],
-        "nextSteps": ["Site assessment", "Quote preparation", "Timeline planning"]
+        "type": "builder_primary",
+        "title": "Start with a Builder", 
+        "description": "Your project is construction-focused. A reputable builder can guide you through the entire process, aligning with renovation roadmap Stage 2: Construction Planning & Execution.",
+        "recommendedProfessionals": [1, 2],
+        "explanation": "Your needs align with hands-on construction expertise. A builder can coordinate trades and manage the build process effectively.",
+        "nextSteps": ["Get detailed quotes", "Check builder credentials", "Review project timeline", "Discuss material options"],
+        "roadmapAlignment": "Stage 2: Construction - Professional builders manage the physical transformation of your space"
       },
       {
-        "outcome": "designer_first",
-        "title": "Start with an Interior Designer", 
-        "description": "Your project focuses on interior improvements and styling.",
-        "recommendations": ["JCC Build", "Nest Interiors"],
-        "nextSteps": ["Design consultation", "Space planning", "Material selection"]
+        "type": "designer_primary",
+        "title": "Start with an Interior Designer",
+        "description": "Your project focuses on interior improvements and aesthetics. An interior designer will help create beautiful, functional spaces, corresponding to renovation roadmap Stage 3: Interior Design & Finishing.",
+        "recommendedProfessionals": [3, 1],
+        "explanation": "Interior design expertise will maximize your space's potential and ensure cohesive style throughout your renovation.",
+        "nextSteps": ["Book design consultation", "Discuss style preferences", "Review space planning", "Select materials and finishes"],
+        "roadmapAlignment": "Stage 3: Finishing - Interior designers transform spaces into beautiful, functional homes"
+      },
+      {
+        "type": "planner_primary", 
+        "title": "Start with Planning Consultation",
+        "description": "Your project needs regulatory guidance first. Consider consulting with planning professionals before design work begins.",
+        "recommendedProfessionals": [2, 1],
+        "explanation": "Understanding consent requirements and regulations will save time and money before design work begins.",
+        "nextSteps": ["Research consent requirements", "Contact local council", "Engage planning consultant", "Confirm project feasibility"],
+        "roadmapAlignment": "Pre-Stage: Planning & Consents - Ensure your project meets all regulatory requirements"
       }
     ]
   },
   {
     "Id": 2,
     "title": "What's Your Renovator Persona?",
-    "description": "Discover your renovation style and approach",
-    "estimatedTime": 5,
+    "description": "Discover your renovation style and get personalized tips for your project approach",
+    "estimatedTime": 6,
     "imageUrl": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=400&fit=crop&crop=center",
+    "status": "published",
     "questions": [
       {
-        "id": 1,
+        "Id": 1,
         "question": "How do you approach big decisions?",
         "options": [
           "Research everything thoroughly first",
           "Go with my gut feeling",
           "Ask lots of people for advice",
           "Plan every detail meticulously"
-        ]
+        ],
+        "scoring": {
+          "Research everything thoroughly first": { "analyst": 3 },
+          "Go with my gut feeling": { "intuitive": 3 },
+          "Ask lots of people for advice": { "collaborative": 3 },
+          "Plan every detail meticulously": { "perfectionist": 3 }
+        }
+      },
+      {
+        "Id": 2,
+        "question": "What excites you most about renovating?",
+        "options": [
+          "The planning and design process",
+          "Seeing the transformation happen",
+          "Having the perfect finished result",
+          "Adding value to my property"
+        ],
+        "scoring": {
+          "The planning and design process": { "analyst": 2, "perfectionist": 2 },
+          "Seeing the transformation happen": { "intuitive": 2, "collaborative": 1 },
+          "Having the perfect finished result": { "perfectionist": 3 },
+          "Adding value to my property": { "analyst": 2, "intuitive": 1 }
+        }
+      },
+      {
+        "Id": 3,
+        "question": "How hands-on do you want to be?",
+        "options": [
+          "I want to DIY as much as possible",
+          "I'll help but hire for complex work",
+          "I'll manage but not do physical work",
+          "I want professionals to handle everything"
+        ],
+        "scoring": {
+          "I want to DIY as much as possible": { "intuitive": 3, "collaborative": 1 },
+          "I'll help but hire for complex work": { "collaborative": 3 },
+          "I'll manage but not do physical work": { "analyst": 2, "perfectionist": 2 },
+          "I want professionals to handle everything": { "perfectionist": 3, "analyst": 1 }
+        }
+      }
+    ],
+    "outcomes": [
+      {
+        "type": "analyst",
+        "title": "The Research Master",
+        "description": "You love to research and understand every detail before making decisions.",
+        "traits": ["Thorough researcher", "Detail-oriented", "Risk-averse", "Value-conscious"],
+        "recommendations": ["Work with experienced professionals", "Get multiple quotes", "Document everything", "Plan for contingencies"],
+        "bestMatch": "You'll work well with architects and builders who provide detailed explanations and transparent processes."
+      },
+      {
+        "type": "intuitive", 
+        "title": "The Creative Visionary",
+        "description": "You trust your instincts and love hands-on creative work.",
+        "traits": ["Creative flair", "Adaptable", "Hands-on approach", "Open to change"],
+        "recommendations": ["Find collaborative professionals", "Stay flexible with plans", "Consider DIY elements", "Trust your style instincts"],
+        "bestMatch": "Interior designers and creative builders who welcome your input and adapt to evolving ideas."
+      },
+      {
+        "type": "collaborative",
+        "title": "The Team Player", 
+        "description": "You love working with others and value multiple perspectives.",
+        "traits": ["Great communicator", "Values teamwork", "Seeks input", "Relationship-focused"],
+        "recommendations": ["Choose communicative professionals", "Regular progress meetings", "Include family in decisions", "Build good relationships with trades"],
+        "bestMatch": "Professionals who prioritize communication and collaborative decision-making throughout the project."
+      },
+      {
+        "type": "perfectionist",
+        "title": "The Quality Controller",
+        "description": "You want everything done perfectly and have exacting standards.",
+        "traits": ["High standards", "Detail-focused", "Quality-driven", "Methodical approach"],
+        "recommendations": ["Choose premium professionals", "Set clear quality standards", "Regular inspections", "Detailed contracts"],
+        "bestMatch": "Experienced professionals with proven track records and quality guarantees who share your commitment to excellence."
       }
     ]
   },
   {
     "Id": 3,
     "title": "Renovation Readiness Check",
-    "description": "Are you actually ready to start your renovation project?",
+    "description": "Are you actually ready to start your renovation project? Find out what you might be missing",
     "estimatedTime": 4,
-    "imageUrl": "https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=600&h=400&fit=crop&crop=center"
+    "imageUrl": "https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=600&h=400&fit=crop&crop=center",
+    "status": "published",
+    "questions": [
+      {
+        "Id": 1,
+        "question": "Have you set a realistic budget?",
+        "options": [
+          "Yes, with 20% contingency included",
+          "Yes, but no contingency buffer",
+          "Rough estimate only",
+          "Not yet - still exploring"
+        ],
+        "scoring": {
+          "Yes, with 20% contingency included": { "ready": 3 },
+          "Yes, but no contingency buffer": { "ready": 2, "planning": 1 },
+          "Rough estimate only": { "planning": 2 },
+          "Not yet - still exploring": { "planning": 3 }
+        }
+      },
+      {
+        "Id": 2,
+        "question": "Do you have accommodation plans during renovation?",
+        "options": [
+          "Alternative accommodation arranged",
+          "Staged renovation - staying put",
+          "We'll rough it and stay",
+          "Haven't thought about it"
+        ],
+        "scoring": {
+          "Alternative accommodation arranged": { "ready": 3 },
+          "Staged renovation - staying put": { "ready": 2 },
+          "We'll rough it and stay": { "ready": 1, "planning": 1 },
+          "Haven't thought about it": { "planning": 3 }
+        }
+      },
+      {
+        "Id": 3,
+        "question": "How clear is your vision?",
+        "options": [
+          "Detailed plans and specifications",
+          "Clear concept with flexibility",
+          "General ideas and inspiration",
+          "Open to suggestions"
+        ],
+        "scoring": {
+          "Detailed plans and specifications": { "ready": 3 },
+          "Clear concept with flexibility": { "ready": 2 },
+          "General ideas and inspiration": { "planning": 2 },
+          "Open to suggestions": { "planning": 3 }
+        }
+      }
+    ],
+    "outcomes": [
+      {
+        "type": "ready",
+        "title": "You're Ready to Start!",
+        "description": "Great news! You've done your homework and are well-prepared to begin your renovation project.",
+        "readinessScore": 85,
+        "strengths": ["Clear budget with contingency", "Accommodation sorted", "Well-defined vision"],
+        "nextSteps": ["Get quotes from professionals", "Finalize design details", "Set start date", "Order long-lead-time items"],
+        "recommendations": "Start contacting professionals now - your preparation will make their job easier and your project more successful."
+      },
+      {
+        "type": "planning",
+        "title": "More Planning Needed",
+        "description": "You're on the right track but need to address some key areas before starting construction.",
+        "readinessScore": 60,
+        "improvements": ["Finalize budget with contingency", "Clarify design vision", "Plan accommodation", "Research professionals"],
+        "nextSteps": ["Complete budget planning", "Gather more design inspiration", "Consider staging options", "Start professional consultations"],
+        "recommendations": "Take time to address these planning areas - it will save significant stress and money during construction."
+      }
+    ]
   },
   {
     "Id": 4,
-    "title": "Kitchen Showdown",
-    "description": "What's your perfect kitchen layout?", 
+    "title": "Kitchen Showdown: Perfect Layout",
+    "description": "Discover your ideal kitchen layout based on how you cook, entertain, and live",
     "estimatedTime": 6,
-    "imageUrl": "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=400&fit=crop&crop=center"
+    "imageUrl": "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=400&fit=crop&crop=center",
+    "status": "published",
+    "questions": [
+      {
+        "Id": 1,
+        "question": "How do you primarily use your kitchen?",
+        "options": [
+          "Serious cooking and meal prep",
+          "Family hub and homework central", 
+          "Entertaining friends and family",
+          "Quick meals and coffee"
+        ],
+        "scoring": {
+          "Serious cooking and meal prep": { "galley": 2, "ushaped": 3 },
+          "Family hub and homework central": { "island": 3, "lshaped": 2 },
+          "Entertaining friends and family": { "island": 3, "open": 2 },
+          "Quick meals and coffee": { "galley": 3, "single": 2 }
+        }
+      },
+      {
+        "Id": 2,
+        "question": "What's your kitchen style preference?",
+        "options": [
+          "Modern and minimalist",
+          "Traditional farmhouse",
+          "Industrial chic", 
+          "Cozy cottage"
+        ],
+        "scoring": {
+          "Modern and minimalist": { "galley": 2, "island": 2 },
+          "Traditional farmhouse": { "island": 3, "ushaped": 2 },
+          "Industrial chic": { "lshaped": 2, "open": 3 },
+          "Cozy cottage": { "ushaped": 3, "galley": 2 }
+        }
+      },
+      {
+        "Id": 3,
+        "question": "What's most important to you?",
+        "options": [
+          "Maximum storage space",
+          "Large island for gathering",
+          "Efficient work triangle",
+          "Easy maintenance and cleanup"
+        ],
+        "scoring": {
+          "Maximum storage space": { "ushaped": 3, "lshaped": 2 },
+          "Large island for gathering": { "island": 3 },
+          "Efficient work triangle": { "galley": 3, "ushaped": 2 },
+          "Easy maintenance and cleanup": { "galley": 2, "single": 2 }
+        }
+      }
+    ],
+    "outcomes": [
+      {
+        "type": "island",
+        "title": "Kitchen Island Paradise",
+        "description": "A large kitchen island is perfect for your entertaining and family-focused lifestyle.",
+        "features": ["Central island with seating", "Open plan layout", "Multiple work zones", "Great for socializing"],
+        "pros": ["Excellent for entertaining", "Extra storage and prep space", "Natural gathering point", "Versatile functionality"],
+        "cons": ["Requires larger space", "Higher cost", "Traffic flow considerations"],
+        "bestFor": "Families who love to entertain and need flexible workspace for multiple activities."
+      },
+      {
+        "type": "ushaped",
+        "title": "The Efficient U-Shape",
+        "description": "Maximum storage and counter space with an efficient work triangle - perfect for serious cooks.",
+        "features": ["Three walls of storage", "Optimal work triangle", "Separate zones", "Maximum bench space"],
+        "pros": ["Incredible storage", "Efficient workflow", "Separate work zones", "Great for meal prep"],
+        "cons": ["Can feel enclosed", "Limited access points", "May need larger space"],
+        "bestFor": "Passionate cooks who need maximum storage and dedicated workspace for food preparation."
+      },
+      {
+        "type": "galley",
+        "title": "Streamlined Galley Style",
+        "description": "Two parallel counters create the ultimate efficient kitchen - every step counts.",
+        "features": ["Parallel work surfaces", "Efficient layout", "Good storage", "Easy workflow"],
+        "pros": ["Very efficient design", "Works in narrow spaces", "Easy to keep organized", "Cost-effective"],
+        "cons": ["Limited counter space", "One cook at a time", "Can feel narrow"],
+        "bestFor": "Efficient cooks who value streamlined workflow and have space constraints."
+      },
+      {
+        "type": "lshaped",
+        "title": "Versatile L-Shape Layout",
+        "description": "The perfect balance of efficiency and openness - adaptable to many lifestyles.",
+        "features": ["Two-wall design", "Open corner", "Flexible layout", "Good storage"],
+        "pros": ["Versatile design", "Works in most spaces", "Open feel", "Allows for dining area"],
+        "cons": ["Corner storage challenges", "Less counter space than U-shape", "May need traffic management"],
+        "bestFor": "Families wanting flexibility and openness while maintaining good functionality."
+      }
+    ]
   }
 ]
