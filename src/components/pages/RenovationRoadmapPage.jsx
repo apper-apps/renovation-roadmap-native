@@ -52,9 +52,9 @@ const RenovationRoadmapPage = () => {
           <h1 className="text-4xl md:text-5xl font-display font-bold text-primary mb-6">
             Your Renovation Roadmap
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+<p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Navigate your renovation journey with confidence. Our step-by-step roadmap shows you 
-            exactly what to expect and which professionals you'll need at each stage.
+            each stage of the standard renovation process, what to expect and which professionals you may need at each stage.
           </p>
         </div>
 
@@ -113,25 +113,23 @@ const RenovationRoadmapPage = () => {
                     {stage.professionalIds && stage.professionalIds.length > 0 && (
                       <div>
 <h4 className="font-semibold text-gray-900 mb-4">Professionals You Could Work With:</h4>
-                        <div className="flex flex-wrap gap-3">
+                        <div className="space-y-3">
                           {stage.professionalIds.map((profId) => {
                             const professional = getProfessionalById(profId);
                             return professional ? (
                               <button
                                 key={profId}
                                 onClick={() => navigate(`/professional/${profId}`)}
-                                className="flex items-center bg-gray-50 hover:bg-primary/5 px-4 py-3 rounded-lg transition-colors group border border-gray-200 hover:border-primary/20"
+                                className="w-full flex items-center justify-between bg-gray-50 hover:bg-primary/5 px-4 py-3 rounded-lg transition-colors group border border-gray-200 hover:border-primary/20"
                               >
-                                <div className="flex items-center space-x-3">
-                                  <img 
-                                    src={professional.logoUrl} 
-                                    alt={`${professional.name} logo`}
-                                    className="h-8 max-w-[80px] object-contain"
-                                  />
-                                  <span className="text-sm font-semibold text-gray-800 group-hover:text-primary">
-                                    A {professional.type.toLowerCase()} like <span className="font-bold text-primary">{professional.name}</span>
-                                  </span>
-                                </div>
+                                <span className="text-sm font-semibold text-gray-800 group-hover:text-primary">
+                                  A {professional.type.toLowerCase()} like <span className="font-bold text-primary">{professional.name}</span>
+                                </span>
+                                <img 
+                                  src={professional.logoUrl} 
+                                  alt={`${professional.name} logo`}
+                                  className="h-8 max-w-[80px] object-contain ml-3"
+                                />
                               </button>
                             ) : null;
                           })}

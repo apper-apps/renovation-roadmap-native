@@ -25,13 +25,15 @@ const ProfessionalCard = ({ professional }) => {
     setLogoLoading(false);
   };
   return (
-    <div className="professional-card">
+<div className="professional-card flex flex-col h-full">
       <div className="text-center mb-6">
-<h3 className="text-2xl font-display font-bold text-primary mb-3">
-          A {professional.type} like... {professional.name}
+        <div className="text-sm text-accent font-medium mb-2">
+          A {professional.type} like...
+        </div>
+        <h3 className="text-2xl font-display font-bold text-primary mb-4">
+          {professional.name}
         </h3>
-<div className="flex items-center justify-center mb-4">
-          <span className="text-gray-600 mr-2 text-sm">like</span>
+        <div className="flex justify-center mb-4">
           <div className="relative h-12 max-w-[140px]">
             {logoLoading && (
               <div className="h-12 w-24 bg-gray-200 animate-pulse rounded"></div>
@@ -58,21 +60,21 @@ const ProfessionalCard = ({ professional }) => {
         {professional.description}
       </p>
       
-<div className="flex flex-col gap-3">
+<div className="flex flex-col gap-3 mt-auto">
         <Button 
           variant="primary" 
           className="flex-1"
           onClick={handleViewProfile}
         >
-<ApperIcon name="User" className="h-4 w-4 mr-2" />
+          <ApperIcon name="User" className="h-4 w-4 mr-2" />
           Learn More
         </Button>
-<Button 
+        <Button 
           variant="outline" 
           className="w-full bg-accent text-white border-accent hover:bg-accent/90"
           onClick={handleVisitWebsite}
         >
-<ApperIcon name="ExternalLink" className="h-4 w-4 mr-2" />
+          <ApperIcon name="ExternalLink" className="h-4 w-4 mr-2" />
           Visit Website
         </Button>
       </div>

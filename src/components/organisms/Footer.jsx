@@ -10,11 +10,11 @@ const Footer = () => {
     { name: "Be Inspired", path: "/be-inspired" },
   ];
 
-  const partners = [
-    { name: "JCC Build", url: "https://jccbuild.nz/" },
-    { name: "Woven Architects", url: "http://wovenarchitects.co.nz" },
-    { name: "Nest Interiors", url: "https://nestinteriors.co.nz/" },
-    { name: "Harrison Grierson", url: "https://www.harrisongrierson.com/" },
+const partners = [
+    { name: "JCC Build", path: "/professional/1" },
+    { name: "Woven Architects", path: "/professional/2" },
+    { name: "Nest Interiors", path: "/professional/3" },
+    { name: "Harrison Grierson", path: "/professional/4" },
   ];
 
   return (
@@ -43,7 +43,7 @@ const Footer = () => {
           {/* Quick Links */}
           <div>
             <h4 className="font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2">
+<ul className="space-y-1">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <Link 
@@ -58,20 +58,17 @@ const Footer = () => {
           </div>
 
           {/* Partners */}
-          <div>
+<div>
             <h4 className="font-semibold mb-4">Our Partners</h4>
-            <ul className="space-y-2">
+            <ul className="space-y-1">
               {partners.map((partner) => (
                 <li key={partner.name}>
-                  <a 
-                    href={partner.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm opacity-75 hover:opacity-100 transition-opacity flex items-center"
+                  <Link 
+                    to={partner.path}
+                    className="text-sm opacity-75 hover:opacity-100 transition-opacity"
                   >
                     {partner.name}
-                    <ApperIcon name="ExternalLink" className="h-3 w-3 ml-1" />
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

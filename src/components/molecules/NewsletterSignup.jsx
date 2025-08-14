@@ -64,7 +64,7 @@ const NewsletterSignup = ({ showLeadMagnet = false }) => {
                 Download Your Free Renovation Workbook
               </h3>
               <p className="text-lg text-gray-600">
-                Get our comprehensive guide to planning your renovation project, plus expert tips delivered to your inbox.
+Get our handy workbook to help you plan your next renovation project, plus sign up to the JCC Build monthly newsletter.
               </p>
             </div>
 
