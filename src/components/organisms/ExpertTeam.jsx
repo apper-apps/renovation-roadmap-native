@@ -64,15 +64,23 @@ Get to know the professionals who could bring your renovation vision to life.
                   {professional.description}
                 </p>
                 
-                <div className="mb-6">
+<div className="mb-6">
                   <h4 className="text-primary font-semibold mb-3 text-lg">Core Services:</h4>
                   <div className="space-y-2">
-                    {professional.services.split(', ').map((service, index) => (
-                      <div key={index} className="flex items-center text-gray-700">
-                        <div className="w-2 h-2 bg-accent rounded-full mr-3 flex-shrink-0"></div>
-                        <span>{service}</span>
-                      </div>
-                    ))}
+                    {professional?.services && typeof professional.services === 'string' 
+                      ? professional.services.split(', ').map((service, index) => (
+                          <div key={index} className="flex items-center text-gray-700">
+                            <div className="w-2 h-2 bg-accent rounded-full mr-3 flex-shrink-0"></div>
+                            <span>{service}</span>
+                          </div>
+                        ))
+                      : (
+                          <div className="flex items-center text-gray-700">
+                            <div className="w-2 h-2 bg-accent rounded-full mr-3 flex-shrink-0"></div>
+                            <span>Services information not available</span>
+                          </div>
+                        )
+                    }
                   </div>
                 </div>
               </div>
