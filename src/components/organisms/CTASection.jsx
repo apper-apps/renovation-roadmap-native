@@ -33,7 +33,7 @@ const CTASection = () => {
                 variant="primary" 
                 size="lg"
                 onClick={() => navigate("/professional/1")}
-              >
+>
                 <ApperIcon name="User" className="h-5 w-5 mr-2" />
                 Contact JCC Build
               </Button>

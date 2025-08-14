@@ -1,13 +1,56 @@
 import { useNavigate } from "react-router-dom";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
 
 const HeroSection = () => {
   const navigate = useNavigate();
 
+  // Typing effect hook
+  const useTypingEffect = (words, typeSpeed = 150, deleteSpeed = 100, pauseTime = 2000) => {
+    const [currentWordIndex, setCurrentWordIndex] = useState(0);
+    const [currentText, setCurrentText] = useState('');
+    const [isDeleting, setIsDeleting] = useState(false);
+    const [isPausing, setIsPausing] = useState(false);
+
+    useEffect(() => {
+      const currentWord = words[currentWordIndex];
+      
+      if (isPausing) {
+        const pauseTimer = setTimeout(() => {
+          setIsPausing(false);
+          setIsDeleting(true);
+        }, pauseTime);
+        return () => clearTimeout(pauseTimer);
+      }
+
+      const timer = setTimeout(() => {
+        if (!isDeleting) {
+          if (currentText.length < currentWord.length) {
+            setCurrentText(currentWord.slice(0, currentText.length + 1));
+          } else {
+            setIsPausing(true);
+          }
+        } else {
+          if (currentText.length > 0) {
+            setCurrentText(currentText.slice(0, -1));
+          } else {
+            setIsDeleting(false);
+            setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
+          }
+        }
+      }, isDeleting ? deleteSpeed : typeSpeed);
+
+      return () => clearTimeout(timer);
+    }, [currentText, isDeleting, isPausing, currentWordIndex, words, typeSpeed, deleteSpeed, pauseTime]);
+
+    return currentText;
+  };
+
+  const typingText = useTypingEffect(['building', 'renovation', 'alteration']);
+
   const handleTakeQuiz = () => {
-    navigate("/quiz/who-to-call-first");
+    navigate("/quizzes");
   };
 
   const handleViewProfessionals = () => {
@@ -31,12 +74,17 @@ className="relative py-12 overflow-hidden border-b border-gray-100" style={{ bac
     <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center text-white">
 <h1
-className="text-4xl md:text-6xl font-display font-bold mb-4 leading-tight drop-shadow-sm">
-                <div style={{ color: '#000000' }}>Got a building project</div>
+className="text-5xl md:text-7xl font-display font-bold mb-4 leading-tight drop-shadow-sm">
+                <div style={{ color: '#000000' }}>
+                  Got a <span className="inline-block min-w-[200px] md:min-w-[300px]">
+                    {typingText}
+                    <span className="animate-pulse">|</span>
+                  </span> project
+                </div>
                 <div style={{ color: '#0059E3' }} className="mb-8">on your mind?</div>
             </h1>
             <h2
-                className="text-2xl md:text-3xl font-display font-semibold mb-6 text-gray-800 drop-shadow-sm">Do you know who to call?
+                className="text-3xl md:text-4xl font-display font-semibold mb-6 text-gray-800 drop-shadow-sm">Do you know who to call?
                           </h2>
             <p
                 className="text-xl md:text-2xl mb-8 text-gray-700 leading-relaxed max-w-3xl mx-auto">Whether you're considering minor updates or major renovations, interior or exterior, 

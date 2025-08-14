@@ -153,11 +153,11 @@ const filteredProjects = selectedFilter === "all"
                         {project.professionalIds.slice(0, 3).map((profId) => {
                           const professional = professionals?.find(p => p.Id === profId);
                           return professional ? (
-                            <div key={profId} className="relative group/tooltip">
+<div key={profId} className="relative group/tooltip">
                               <img 
-                                src={professional.logoUrl || "/api/placeholder/24/24"} 
+                                src={professional.logoUrl || "/api/placeholder/32/32"} 
                                 alt={`${professional.name || "Professional"} logo`}
-                                className="h-6 w-6 rounded-full border-2 border-white object-contain bg-white"
+                                className="h-8 w-8 rounded-full border-2 border-white object-contain bg-white"
                               />
                               <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover/tooltip:block">
                                 <div className="bg-gray-900 text-white text-xs py-1 px-2 rounded whitespace-nowrap">

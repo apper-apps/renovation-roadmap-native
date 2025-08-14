@@ -44,8 +44,10 @@ const ProfessionalProfilePage = () => {
     }
   };
 
-  useEffect(() => {
+useEffect(() => {
     loadData();
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
   }, [id]);
 
   if (loading) return <Loading />;
@@ -92,7 +94,7 @@ const ProfessionalProfilePage = () => {
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Button
                       variant="primary"
-                      onClick={() => document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" })}
+onClick={() => document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" })}
                     >
                       <ApperIcon name="MessageCircle" className="h-4 w-4 mr-2" />
                       Get In Touch

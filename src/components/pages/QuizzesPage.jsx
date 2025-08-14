@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ApperIcon from "@/components/ApperIcon";
 import QuizCard from "@/components/molecules/QuizCard";
 import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
 import Empty from "@/components/ui/Empty";
+import Button from "@/components/atoms/Button";
 import { getQuizzes } from "@/services/api/quizService";
 
 const QuizzesPage = () => {
@@ -42,67 +44,73 @@ const QuizzesPage = () => {
     <div className="py-12">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-display font-bold text-primary mb-6">
-            Renovation Quizzes
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Not sure where to start with your renovation? Take our interactive quizzes to get 
-            personalized recommendations and discover the best professionals for your project.
-          </p>
-        </div>
+{/* Quiz Section - White Background Container */}
+        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 mb-16">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-display font-bold text-primary mb-6">
+              Take Our Quiz to Find Out Who You Need
+            </h1>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Not sure where to start? Our interactive quizzes will help you understand your project needs and connect you with the right professionals.
+            </p>
+          </div>
 
-        {/* Featured Quiz */}
-        {quizzes.length > 0 && (
-          <div className="mb-12">
-            <div className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl p-8">
-              <div className="max-w-4xl mx-auto">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                  <div>
-                    <div className="bg-accent text-white text-sm px-3 py-1 rounded-full inline-block mb-4">
-                      Most Popular
+{/* Featured Quiz */}
+          {quizzes.length > 0 && quizzes[0] && (
+            <div className="mb-16">
+              <div className="bg-gradient-to-r from-primary/5 to-accent/5 rounded-2xl p-8">
+                <div className="flex items-start justify-between mb-6">
+                  <div className="flex-1">
+                    <div className="flex items-center mb-3">
+                      <div className="bg-accent text-white px-3 py-1 rounded-full text-sm font-medium mr-3">
+                        Featured
+                      </div>
+                      <div className="text-sm text-gray-600">
+                        <ApperIcon name="Users" className="h-4 w-4 inline mr-1" />
+                        {quizzes[0].completions || 0} completed
+                      </div>
                     </div>
-                    <h2 className="text-3xl font-display font-bold text-primary mb-4">
+                    <h2 className="text-3xl font-display font-bold text-primary mb-3">
                       {quizzes[0].title}
                     </h2>
-                    <p className="text-gray-600 mb-6">
+                    <p className="text-gray-600 text-lg mb-6">
                       {quizzes[0].description}
                     </p>
-                    <div className="flex items-center text-gray-500 mb-6">
-                      <span className="flex items-center mr-6">
-                        <span className="w-2 h-2 bg-success rounded-full mr-2"></span>
-                        {quizzes[0].estimatedTime} minutes
-                      </span>
-                      <span className="flex items-center">
-                        <span className="w-2 h-2 bg-info rounded-full mr-2"></span>
-                        {quizzes[0].questions?.length || 8} questions
-                      </span>
+                    <div className="flex items-center text-gray-600 mb-6">
+                      <ApperIcon name="Clock" className="h-4 w-4 mr-2" />
+                      <span>{quizzes[0].estimatedTime} minutes</span>
+                      <span className="mx-3">•</span>
+                      <ApperIcon name="HelpCircle" className="h-4 w-4 mr-2" />
+                      <span>{quizzes[0].questions?.length || 0} questions</span>
                     </div>
-                  </div>
-                  <div className="relative">
-                    <img 
-                      src={quizzes[0].imageUrl} 
-                      alt={quizzes[0].title}
-                      className="w-full h-64 object-cover rounded-xl shadow-lg"
-                    />
+                    <Button 
+                      size="lg"
+                      onClick={() => navigate(`/quiz/${quizzes[0].Id}`)}
+                      className="bg-accent hover:bg-accent/90"
+                    >
+                      <ApperIcon name="ArrowRight" className="h-5 w-5 mr-2" />
+                      Start Quiz
+                    </Button>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {/* All Quizzes Grid */}
-        <div>
-          <h2 className="text-2xl font-display font-bold text-primary mb-8 text-center">
-            All Quizzes
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {quizzes.map((quiz) => (
-              <QuizCard key={quiz.Id} quiz={quiz} />
-            ))}
+          <div>
+            <h2 className="text-2xl font-display font-bold text-primary mb-8 text-center">
+              All Quizzes
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {quizzes.map((quiz) => (
+                <QuizCard 
+                  key={quiz.Id} 
+                  quiz={quiz} 
+                  onClick={() => navigate(`/quiz/${quiz.Id}`)} 
+                />
+              ))}
+            </div>
           </div>
-        </div>
 
         {/* Help Section */}
         <div className="mt-16">
@@ -115,18 +123,18 @@ const QuizzesPage = () => {
               or view our renovation roadmap for comprehensive guidance.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-<button 
+<Button 
                 onClick={() => navigate('/faq')}
-                className="btn-primary"
+                variant="primary"
               >
                 View FAQ
-              </button>
-<button 
+              </Button>
+              <Button 
                 onClick={() => navigate('/renovation-roadmap')}
-                className="btn-secondary"
+                variant="secondary"
               >
                 Renovation Roadmap
-              </button>
+              </Button>
             </div>
           </div>
         </div>

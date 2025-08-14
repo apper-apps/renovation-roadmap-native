@@ -119,19 +119,21 @@ const calculateResults = () => {
       }
     }
 
-    // Fallback to professional-based scoring for "Who Should I Call First" quiz
-    if (quiz.Id === 1 && recommendedProfessionals.length === 0) {
+    // Enhanced professional matching logic
+    if (recommendedProfessionals.length === 0) {
       const professionalScores = {};
       
       Object.entries(answers).forEach(([questionId, answer]) => {
         const question = quiz.questions.find(q => q.Id === parseInt(questionId));
         if (question && question.scoring) {
           Object.entries(question.scoring[answer] || {}).forEach(([category, points]) => {
-            // Map categories to professional IDs
+            // Enhanced mapping to match professional categories
             let profId = null;
-            if (category === 'builder') profId = 1;
-            else if (category === 'architect') profId = 2; 
-            else if (category === 'designer') profId = 3;
+            const categoryLower = category.toLowerCase();
+            
+            if (categoryLower.includes('builder') || categoryLower.includes('construction')) profId = 1; // JCC Build
+            else if (categoryLower.includes('architect') || categoryLower.includes('design') || categoryLower.includes('structural')) profId = 2; // Architect
+            else if (categoryLower.includes('interior') || categoryLower.includes('designer') || categoryLower.includes('decoration')) profId = 3; // Nest Interiors
             
             if (profId) {
               professionalScores[profId] = (professionalScores[profId] || 0) + points;
@@ -140,11 +142,16 @@ const calculateResults = () => {
         }
       });
 
-      // Get top 2 professionals
+      // Get professionals with scores, sorted by score
       recommendedProfessionals = professionals
         .filter(prof => professionalScores[prof.Id] > 0)
         .sort((a, b) => (professionalScores[b.Id] || 0) - (professionalScores[a.Id] || 0))
         .slice(0, 2);
+
+      // Fallback: if no scored professionals, provide default recommendations
+      if (recommendedProfessionals.length === 0 && professionals.length > 0) {
+        recommendedProfessionals = professionals.slice(0, 1); // Show first professional as fallback
+      }
     }
 
     // Store detailed results
@@ -449,7 +456,7 @@ if (showResults) {
             Question {currentQuestion + 1}: {currentQ.question}
           </legend>
           
-          {currentQ.options.map((option, index) => (
+{currentQ.options.map((option, index) => (
             <label
               key={index}
               className={`flex items-start p-4 rounded-lg border-2 cursor-pointer transition-all duration-200 hover:bg-gray-50 hover:border-gray-300 focus-within:ring-2 focus-within:ring-primary/20 ${
@@ -467,12 +474,21 @@ if (showResults) {
                 className="mt-1 mr-4 text-primary focus:ring-primary focus:ring-offset-0"
                 aria-describedby={`option-${index}-description`}
               />
-              <span 
-                className="text-gray-700 flex-1"
-                id={`option-${index}-description`}
-              >
-                {option}
-              </span>
+              <div className="flex items-start flex-1">
+                <div className="mr-3 flex-shrink-0">
+                  <img 
+                    src={`/api/placeholder/48/48`} 
+                    alt={`Option ${index + 1}`}
+                    className="w-12 h-12 rounded-lg object-cover border border-gray-200"
+                  />
+                </div>
+                <span 
+                  className="text-gray-700 flex-1"
+                  id={`option-${index}-description`}
+                >
+                  {option}
+                </span>
+              </div>
             </label>
           ))}
         </fieldset>
