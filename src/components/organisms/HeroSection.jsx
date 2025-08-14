@@ -33,7 +33,7 @@ className="relative py-12 overflow-hidden border-b border-gray-100" style={{ bac
 <h1
 className="text-4xl md:text-6xl font-display font-bold mb-4 leading-tight drop-shadow-sm">
                 <div style={{ color: '#000000' }}>Got a building project</div>
-                <div style={{ color: '#0059E3' }}>on your mind?</div>
+                <div style={{ color: '#0059E3' }} className="mb-8">on your mind?</div>
             </h1>
             <h2
                 className="text-2xl md:text-3xl font-display font-semibold mb-6 text-gray-800 drop-shadow-sm">Do you know who to call?
