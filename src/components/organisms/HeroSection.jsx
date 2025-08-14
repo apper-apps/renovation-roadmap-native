@@ -17,8 +17,8 @@ const HeroSection = () => {
   };
 
   return (
-    <section
-className="relative py-20 overflow-hidden border-b border-gray-100" style={{ backgroundColor: '#F7F9FB' }}>
+<section
+className="relative py-12 overflow-hidden border-b border-gray-100" style={{ backgroundColor: '#F7F9FB' }}>
     {/* Background Pattern */}
     <div className="absolute inset-0 opacity-10">
         <div
