@@ -1,13 +1,16 @@
-import { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import Button from "@/components/atoms/Button";
+import { useSelector } from "react-redux";
+import { AuthContext } from "@/App";
 import ApperIcon from "@/components/ApperIcon";
+import Button from "@/components/atoms/Button";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-
+  const { logout } = useContext(AuthContext);
+  const { user, isAuthenticated } = useSelector((state) => state.user);
 const navigation = [
     { name: "Home", path: "/" },
     { name: "Renovation Roadmap", path: "/renovation-roadmap" },
@@ -53,10 +56,16 @@ const handleQuizClick = () => {
               >
                 {item.name}
               </Link>
-            ))}
+))}
             <Button variant="accent" size="sm" onClick={handleQuizClick}>
               Take Our Quiz
             </Button>
+            {isAuthenticated && (
+              <Button variant="outline" size="sm" onClick={logout} className="ml-2">
+                <ApperIcon name="LogOut" className="h-4 w-4 mr-2" />
+                Logout
+              </Button>
+            )}
           </nav>
 
           {/* Mobile Menu Button */}
@@ -88,7 +97,7 @@ const handleQuizClick = () => {
                 {item.name}
               </Link>
             ))}
-            <div className="px-4 pt-2">
+<div className="px-4 pt-2">
               <Button 
                 variant="accent" 
                 size="sm" 
@@ -97,7 +106,17 @@ const handleQuizClick = () => {
               >
                 Take Our Quiz
               </Button>
-            </div>
+              {isAuthenticated && (
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="w-full mt-2"
+                  onClick={logout}
+                >
+                  <ApperIcon name="LogOut" className="h-4 w-4 mr-2" />
+                  Logout
+                </Button>
+              )}
           </div>
         )}
       </div>
