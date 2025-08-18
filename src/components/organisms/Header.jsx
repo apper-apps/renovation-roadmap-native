@@ -53,10 +53,10 @@ const handleQuizClick = () => {
                     ? "text-primary border-b-2 border-primary pb-1" 
                     : "text-gray-700"
                 }`}
-              >
+>
                 {item.name}
               </Link>
-))}
+            ))}
             <Button variant="accent" size="sm" onClick={handleQuizClick}>
               Take Our Quiz
             </Button>
@@ -117,6 +117,7 @@ const handleQuizClick = () => {
                   Logout
                 </Button>
               )}
+</div>
           </div>
         )}
       </div>
