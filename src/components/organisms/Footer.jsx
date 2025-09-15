@@ -1,7 +1,35 @@
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ApperIcon from "@/components/ApperIcon";
+import siteSettingsService from "@/services/api/siteSettingsService";
 
 const Footer = () => {
+  const [siteContent, setSiteContent] = useState({
+    siteName: "Renovation Roadmap",
+    footerContent: "Connecting homeowners with New Zealand's finest renovation professionals. Your dream home starts with knowing who to call first."
+  });
+  const [contentLoading, setContentLoading] = useState(true);
+
+  // Load dynamic content from settings
+  useEffect(() => {
+    const loadContent = async () => {
+      try {
+        const settings = await siteSettingsService.getSiteSettings();
+        setSiteContent({
+          siteName: settings.siteName || "Renovation Roadmap",
+          footerContent: settings.footerContent || "Connecting homeowners with New Zealand's finest renovation professionals. Your dream home starts with knowing who to call first."
+        });
+      } catch (error) {
+        console.error("Error loading footer content:", error);
+        // Keep default content on error
+      } finally {
+        setContentLoading(false);
+      }
+    };
+
+    loadContent();
+  }, []);
+
   const quickLinks = [
     { name: "Home", path: "/" },
     { name: "Renovation Roadmap", path: "/renovation-roadmap" },
@@ -17,7 +45,7 @@ const partners = [
     { name: "Harrison Grierson", path: "/professional/4" },
   ];
 
-  return (
+return (
     <footer className="bg-primary text-white">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -29,15 +57,25 @@ const partners = [
               </div>
               <div>
                 <h3 className="text-xl font-display font-bold">
-                  Renovation Roadmap
+                  {contentLoading ? (
+                    <div className="h-6 w-32 bg-white/20 animate-pulse rounded"></div>
+                  ) : (
+                    siteContent.siteName
+                  )}
                 </h3>
                 <p className="text-sm opacity-75">For the Waikato Region</p>
               </div>
             </div>
-            <p className="text-sm opacity-90 leading-relaxed">
-              Connecting homeowners with New Zealand's finest renovation professionals. 
-              Your dream home starts with knowing who to call first.
-            </p>
+            {contentLoading ? (
+              <div className="space-y-2">
+                <div className="h-4 w-full bg-white/20 animate-pulse rounded"></div>
+                <div className="h-4 w-3/4 bg-white/20 animate-pulse rounded"></div>
+              </div>
+            ) : (
+              <p className="text-sm opacity-90 leading-relaxed">
+                {siteContent.footerContent}
+              </p>
+            )}
           </div>
 
           {/* Quick Links */}

@@ -42,10 +42,12 @@ export const siteSettingsService = {
       }
 
       // Transform database records into expected format
-      const settings = {
+const settings = {
         siteLogo: '',
         faviconUrl: '',
-        siteName: ''
+        siteName: '',
+        homePageContent: '',
+        footerContent: ''
       };
 
       if (response.data) {
@@ -59,6 +61,10 @@ export const siteSettingsService = {
             settings.faviconUrl = settingValue || '';
           } else if (settingName === 'site_name' || settingName === 'sitename') {
             settings.siteName = settingValue || '';
+          } else if (settingName === 'home_page_content' || settingName === 'homepagecontent') {
+            settings.homePageContent = settingValue || '';
+          } else if (settingName === 'footer_content' || settingName === 'footercontent') {
+            settings.footerContent = settingValue || '';
           }
         });
       }
@@ -71,7 +77,7 @@ export const siteSettingsService = {
   },
 
   // Update site settings in database
-  async updateSiteSettings(settings) {
+async updateSiteSettings(settings) {
     try {
       const apperClient = this.getApperClient();
 
@@ -90,6 +96,15 @@ export const siteSettingsService = {
         } catch {
           throw new Error("Invalid favicon URL format");
         }
+      }
+
+      // Validate content length
+      if (settings.homePageContent && settings.homePageContent.length > 1000) {
+        throw new Error("Home page content must be less than 1000 characters");
+      }
+
+      if (settings.footerContent && settings.footerContent.length > 500) {
+        throw new Error("Footer content must be less than 500 characters");
       }
 
       // Create records for each setting
@@ -115,6 +130,22 @@ export const siteSettingsService = {
         recordsToUpdate.push({
           setting_name_c: "site_name",
           setting_value_c: settings.siteName,
+          setting_type_c: "text"
+        });
+      }
+
+      if (settings.homePageContent !== undefined) {
+        recordsToUpdate.push({
+          setting_name_c: "home_page_content",
+          setting_value_c: settings.homePageContent,
+          setting_type_c: "text"
+        });
+      }
+
+      if (settings.footerContent !== undefined) {
+        recordsToUpdate.push({
+          setting_name_c: "footer_content",
+          setting_value_c: settings.footerContent,
           setting_type_c: "text"
         });
       }
@@ -156,11 +187,13 @@ export const siteSettingsService = {
   },
 
   // Reset to defaults
-  async resetToDefaults() {
+async resetToDefaults() {
     const defaultSettings = {
       siteLogo: "https://content.app-sources.com/s/286081838088918141/uploads/Brand/RR_primary_logo_sml-6273828.png",
       faviconUrl: "/vite.svg",
-      siteName: "Renovation Roadmap"
+      siteName: "Renovation Roadmap",
+      homePageContent: "Welcome to Renovation Roadmap - your comprehensive guide to home renovation in the Waikato region. Connect with trusted professionals and transform your dream home into reality.",
+      footerContent: "Connecting homeowners with New Zealand's finest renovation professionals. Your dream home starts with knowing who to call first."
     };
 
     await this.updateSiteSettings(defaultSettings);
