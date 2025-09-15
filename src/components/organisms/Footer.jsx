@@ -75,15 +75,6 @@ const partners = [
           </div>
 
           {/* Contact */}
-          <div>
-            <h4 className="font-semibold mb-4">Professional Login</h4>
-            <p className="text-sm opacity-75 mb-4">
-              Are you a renovation professional? Access your dashboard to manage leads and update your profile.
-            </p>
-            <button className="text-sm bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg transition-colors">
-              Professional Login
-            </button>
-          </div>
         </div>
 
         <div className="border-t border-white/20 mt-8 pt-8 text-center">

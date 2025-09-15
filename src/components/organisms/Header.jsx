@@ -1,10 +1,8 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { AuthContext } from "@/App";
+import siteSettingsService from "@/services/api/siteSettingsService";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
-import { siteSettingsService } from "@/services/api/siteSettingsService";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -12,9 +10,6 @@ const Header = () => {
   const [logoLoading, setLogoLoading] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
-  const { logout } = useContext(AuthContext);
-  const { user, isAuthenticated } = useSelector((state) => state.user);
-
   // Load site logo from settings
   useEffect(() => {
     const loadSiteLogo = async () => {
@@ -85,12 +80,6 @@ const handleQuizClick = () => {
             <Button variant="accent" size="sm" onClick={handleQuizClick}>
               Take Our Quiz
             </Button>
-            {isAuthenticated && (
-              <Button variant="outline" size="sm" onClick={logout} className="ml-2">
-                <ApperIcon name="LogOut" className="h-4 w-4 mr-2" />
-                Logout
-              </Button>
-            )}
           </nav>
 
           {/* Mobile Menu Button */}
@@ -131,17 +120,6 @@ const handleQuizClick = () => {
               >
                 Take Our Quiz
               </Button>
-              {isAuthenticated && (
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="w-full mt-2"
-                  onClick={logout}
-                >
-                  <ApperIcon name="LogOut" className="h-4 w-4 mr-2" />
-                  Logout
-                </Button>
-              )}
 </div>
           </div>
         )}
