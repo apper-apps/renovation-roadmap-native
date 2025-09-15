@@ -1,16 +1,38 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { AuthContext } from "@/App";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
+import { siteSettingsService } from "@/services/api/siteSettingsService";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [siteLogo, setSiteLogo] = useState("https://content.app-sources.com/s/286081838088918141/uploads/Brand/RR_primary_logo_sml-6273828.png");
+  const [logoLoading, setLogoLoading] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
   const { logout } = useContext(AuthContext);
   const { user, isAuthenticated } = useSelector((state) => state.user);
+
+  // Load site logo from settings
+  useEffect(() => {
+    const loadSiteLogo = async () => {
+      try {
+        const settings = await siteSettingsService.getSiteSettings();
+        if (settings.siteLogo) {
+          setSiteLogo(settings.siteLogo);
+        }
+      } catch (error) {
+        console.error("Error loading site logo:", error);
+        // Keep default logo on error
+      } finally {
+        setLogoLoading(false);
+      }
+    };
+
+    loadSiteLogo();
+  }, []);
 const navigation = [
     { name: "Home", path: "/" },
     { name: "Renovation Roadmap", path: "/renovation-roadmap" },
@@ -31,11 +53,18 @@ const handleQuizClick = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
 <Link to="/" className="flex items-center">
-              <img 
-                src="https://content.app-sources.com/s/286081838088918141/uploads/Brand/RR_primary_logo_sml-6273828.png" 
-                alt="Renovation Roadmap" 
-                className="h-12 w-auto"
-              />
+              {logoLoading ? (
+                <div className="h-12 w-32 bg-gray-200 animate-pulse rounded"></div>
+              ) : (
+                <img 
+                  src={siteLogo} 
+                  alt="Renovation Roadmap" 
+                  className="h-12 w-auto"
+                  onError={(e) => {
+                    e.target.src = "https://content.app-sources.com/s/286081838088918141/uploads/Brand/RR_primary_logo_sml-6273828.png";
+                  }}
+                />
+              )}
           </Link>
 
           {/* Desktop Navigation */}
