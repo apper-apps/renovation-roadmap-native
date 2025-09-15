@@ -24,7 +24,7 @@ const CTASection = () => {
               <Button 
                 variant="accent" 
                 size="lg"
-                onClick={() => navigate("/quiz/who-to-call-first")}
+onClick={() => navigate("/quiz/who-to-call-first")}
               >
                 <ApperIcon name="Play" className="h-5 w-5 mr-2" />
                 Take Our Quiz

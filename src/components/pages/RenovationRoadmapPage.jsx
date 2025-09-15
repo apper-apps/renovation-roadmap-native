@@ -40,10 +40,6 @@ const RenovationRoadmapPage = () => {
   if (loading) return <Loading />;
   if (error) return <Error message={error} onRetry={loadData} />;
 
-  const getProfessionalById = (id) => {
-    return professionals.find(prof => prof.Id === id);
-  };
-
   return (
     <div className="py-12">
     <div className="container mx-auto px-4">
