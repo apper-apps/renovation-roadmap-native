@@ -129,8 +129,8 @@ features: project.features_c ? project.features_c.split('\n').filter(f => f.trim
       const apperClient = this.getApperClient();
       
       const params = {
-        fields: [
-{ field: { Name: "Name" } },
+fields: [
+          { field: { Name: "Name" } },
           { field: { Name: "title_c" } },
           { field: { Name: "subtitle_c" } },
           { field: { Name: "description_c" } },
@@ -178,7 +178,7 @@ const response = await apperClient.fetchRecords('project_c', params);
         featured: project.featured_c,
         professionalIds: project.professional_ids_c ? project.professional_ids_c.split(',').map(id => parseInt(id.trim())) : [],
 features: project.features_c ? project.features_c.split('\n').filter(f => f.trim()) : (project.features || []),
-        gallery: project.project_images_c ? project.project_images_c.split(',').map(img => img.trim()).filter(img => img) : (project.gallery || [])
+gallery: project.project_images_c ? project.project_images_c.split(',').map(img => img.trim()).filter(img => img) : (project.gallery || [])
       }));
 
       return transformedData;
@@ -318,7 +318,7 @@ features_c: projectData.features_c || (Array.isArray(projectData.features) ? pro
       if (updates.professional_ids_c !== undefined) updateData.professional_ids_c = updates.professional_ids_c;
 if (updates.features_c !== undefined) updateData.features_c = updates.features_c;
       if (updates.features !== undefined) updateData.features_c = Array.isArray(updates.features) ? updates.features.join('\n') : updates.features;
-      if (updates.project_images_c !== undefined) updateData.project_images_c = updates.project_images_c;
+if (updates.project_images_c !== undefined) updateData.project_images_c = updates.project_images_c;
       if (updates.gallery !== undefined) updateData.project_images_c = Array.isArray(updates.gallery) ? updates.gallery.join(',') : updates.gallery;
       const params = {
         records: [updateData]

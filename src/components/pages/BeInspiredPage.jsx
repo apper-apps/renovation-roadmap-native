@@ -103,8 +103,8 @@ const featuredProjects = filteredProjects.filter(project => project.featured_c =
           <div className="mb-12">
             <div className="relative h-96 rounded-2xl overflow-hidden cursor-pointer group"
                  onClick={() => navigate(`/project/${displayProjects[0].Id}`)}>
-              <img 
-src={displayProjects[0].image_url_c || displayProjects[0].imageUrl || "/api/placeholder/800/600"}
+<img 
+                src={displayProjects[0].image_url_c || displayProjects[0].imageUrl || "/api/placeholder/800/600"}
                 alt={displayProjects[0].title || "Project image"}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />

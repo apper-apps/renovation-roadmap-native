@@ -42,10 +42,10 @@ const data = await getProjects();
         >
           <div className={`flex space-x-6 ${!isPaused ? 'animate-slide' : ''}`}>
             {/* First set of projects */}
-            {projects.map((project) => (
+{projects.map((project) => (
               <ProjectCard key={project.Id} project={project} size="lg" />
             ))}
-            {/* Duplicate for seamless loop */}
+            {/* Duplicate for seamless scroll */}
             {projects.map((project) => (
               <ProjectCard key={`duplicate-${project.Id}`} project={project} size="lg" />
             ))}

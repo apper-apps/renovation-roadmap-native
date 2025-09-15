@@ -46,7 +46,7 @@ const handleClick = () => {
         </div>
       )}
 <img 
-        src={imageError ? "/api/placeholder/800/600" : (project.image_url_c || project.imageUrl || "/api/placeholder/800/600")} 
+src={imageError ? "/api/placeholder/800/600" : (project.image_url_c || project.imageUrl || "/api/placeholder/800/600")} 
         alt={project.title_c || project.title || "Project image"}
         className={`w-full h-full object-cover transition-opacity duration-300 ${imageLoading ? 'opacity-0' : 'opacity-100'}`}
         onError={handleImageError}
