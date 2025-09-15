@@ -54,8 +54,31 @@
     @apply card hover:scale-[1.02] cursor-pointer;
   }
   
-  .project-card {
+.project-card {
     @apply relative overflow-hidden rounded-lg cursor-pointer transition-all duration-300 hover:scale-105;
+  }
+
+  .embed-container {
+    @apply w-full relative;
+  }
+
+  .embed-container iframe {
+    @apply w-full border-0 rounded-lg;
+    min-height: 400px;
+  }
+
+  .embed-container iframe[src*="forms"] {
+    min-height: 500px;
+  }
+
+  .embed-container iframe[src*="contact"] {
+    min-height: 450px;
+  }
+
+  @media (max-width: 768px) {
+    .embed-container iframe {
+      min-height: 350px;
+    }
   }
 }
 
