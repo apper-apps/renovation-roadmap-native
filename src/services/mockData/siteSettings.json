@@ -3,5 +3,14 @@
   "siteLogo": "https://content.app-sources.com/s/286081838088918141/uploads/Brand/RR_primary_logo_sml-6273828.png",
   "faviconUrl": "/vite.svg",
   "siteName": "Renovation Roadmap",
+  "homePageContent": "Welcome to Renovation Roadmap - Your trusted partner in home renovation projects. We connect homeowners with verified professionals to make your dream home a reality.",
+  "footerContent": "© 2024 Renovation Roadmap. All rights reserved. Transforming homes, one project at a time.",
+  "contactEmail": "info@renovationroadmap.com",
+  "contactPhone": "1-800-RENOVATE",
+  "socialMedia": {
+    "facebook": "https://facebook.com/renovationroadmap",
+    "instagram": "https://instagram.com/renovationroadmap",
+    "twitter": "https://twitter.com/renovationroadmap"
+  },
   "lastUpdated": "2024-01-15T10:30:00.000Z"
 }
