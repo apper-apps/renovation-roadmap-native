@@ -12,7 +12,7 @@ class ProjectService {
       const apperClient = this.getApperClient();
       
       const params = {
-        fields: [
+fields: [
           { field: { Name: "Name" } },
           { field: { Name: "title_c" } },
           { field: { Name: "subtitle_c" } },
@@ -23,7 +23,8 @@ class ProjectService {
           { field: { Name: "duration_c" } },
           { field: { Name: "featured_c" } },
           { field: { Name: "professional_ids_c" } },
-          { field: { Name: "features_c" } }
+          { field: { Name: "features_c" } },
+          { field: { Name: "project_images_c" } }
         ],
         orderBy: [
           {
@@ -37,14 +38,32 @@ class ProjectService {
         }
       };
 
-      const response = await apperClient.fetchRecords('project_c', params);
+const response = await apperClient.fetchRecords('project_c', params);
 
       if (!response.success) {
         console.error(response.message);
         throw new Error(response.message);
       }
 
-      return response.data || [];
+      // Transform the data to match UI expectations
+      const transformedData = (response.data || []).map(project => ({
+        ...project,
+        // Map database fields to UI fields for compatibility
+        title: project.title_c,
+        subtitle: project.subtitle_c,
+        description: project.description_c,
+        imageUrl: project.image_url_c,
+        category: project.category_c,
+        location: project.location_c,
+        duration: project.duration_c,
+        featured: project.featured_c,
+        professionalIds: project.professional_ids_c ? project.professional_ids_c.split(',').map(id => parseInt(id.trim())) : [],
+        features: project.features_c ? project.features_c.split('\n').filter(f => f.trim()) : [],
+        // Transform project images from MultiPicklist to array
+        gallery: project.project_images_c ? project.project_images_c.split(',').map(img => img.trim()).filter(img => img) : []
+      }));
+
+      return transformedData;
     } catch (error) {
       console.error("Error fetching projects:", error?.response?.data?.message || error);
       throw error;
@@ -56,7 +75,7 @@ class ProjectService {
       const apperClient = this.getApperClient();
       
       const params = {
-        fields: [
+fields: [
           { field: { Name: "Name" } },
           { field: { Name: "title_c" } },
           { field: { Name: "subtitle_c" } },
@@ -67,18 +86,38 @@ class ProjectService {
           { field: { Name: "duration_c" } },
           { field: { Name: "featured_c" } },
           { field: { Name: "professional_ids_c" } },
-          { field: { Name: "features_c" } }
+          { field: { Name: "features_c" } },
+          { field: { Name: "project_images_c" } }
         ]
       };
 
-      const response = await apperClient.getRecordById('project_c', id, params);
+const response = await apperClient.getRecordById('project_c', id, params);
 
       if (!response.success) {
         console.error(response.message);
         return null;
       }
 
-      return response.data;
+      // Transform single project data
+      if (response.data) {
+        const project = response.data;
+        return {
+          ...project,
+          title: project.title_c,
+          subtitle: project.subtitle_c,
+          description: project.description_c,
+          imageUrl: project.image_url_c,
+          category: project.category_c,
+          location: project.location_c,
+          duration: project.duration_c,
+          featured: project.featured_c,
+          professionalIds: project.professional_ids_c ? project.professional_ids_c.split(',').map(id => parseInt(id.trim())) : [],
+          features: project.features_c ? project.features_c.split('\n').filter(f => f.trim()) : [],
+          gallery: project.project_images_c ? project.project_images_c.split(',').map(img => img.trim()).filter(img => img) : []
+        };
+      }
+
+      return null;
     } catch (error) {
       console.error(`Error fetching project with ID ${id}:`, error?.response?.data?.message || error);
       return null;
@@ -91,7 +130,7 @@ class ProjectService {
       
       const params = {
         fields: [
-          { field: { Name: "Name" } },
+{ field: { Name: "Name" } },
           { field: { Name: "title_c" } },
           { field: { Name: "subtitle_c" } },
           { field: { Name: "description_c" } },
@@ -101,7 +140,8 @@ class ProjectService {
           { field: { Name: "duration_c" } },
           { field: { Name: "featured_c" } },
           { field: { Name: "professional_ids_c" } },
-          { field: { Name: "features_c" } }
+          { field: { Name: "features_c" } },
+          { field: { Name: "project_images_c" } }
         ],
         where: [
           {
@@ -118,14 +158,30 @@ class ProjectService {
         ]
       };
 
-      const response = await apperClient.fetchRecords('project_c', params);
+const response = await apperClient.fetchRecords('project_c', params);
 
       if (!response.success) {
         console.error(response.message);
         throw new Error(response.message);
       }
 
-      return response.data || [];
+      // Transform featured projects data
+      const transformedData = (response.data || []).map(project => ({
+        ...project,
+        title: project.title_c,
+        subtitle: project.subtitle_c,
+        description: project.description_c,
+        imageUrl: project.image_url_c,
+        category: project.category_c,
+        location: project.location_c,
+        duration: project.duration_c,
+        featured: project.featured_c,
+        professionalIds: project.professional_ids_c ? project.professional_ids_c.split(',').map(id => parseInt(id.trim())) : [],
+        features: project.features_c ? project.features_c.split('\n').filter(f => f.trim()) : [],
+        gallery: project.project_images_c ? project.project_images_c.split(',').map(img => img.trim()).filter(img => img) : []
+      }));
+
+      return transformedData;
     } catch (error) {
       console.error("Error fetching featured projects:", error?.response?.data?.message || error);
       throw error;
@@ -137,7 +193,7 @@ class ProjectService {
       const apperClient = this.getApperClient();
       
       const params = {
-        fields: [
+fields: [
           { field: { Name: "Name" } },
           { field: { Name: "title_c" } },
           { field: { Name: "subtitle_c" } },
@@ -148,7 +204,8 @@ class ProjectService {
           { field: { Name: "duration_c" } },
           { field: { Name: "featured_c" } },
           { field: { Name: "professional_ids_c" } },
-          { field: { Name: "features_c" } }
+          { field: { Name: "features_c" } },
+          { field: { Name: "project_images_c" } }
         ],
         where: [
           {
@@ -159,14 +216,30 @@ class ProjectService {
         ]
       };
 
-      const response = await apperClient.fetchRecords('project_c', params);
+const response = await apperClient.fetchRecords('project_c', params);
 
       if (!response.success) {
         console.error(response.message);
         throw new Error(response.message);
       }
 
-      return response.data || [];
+      // Transform projects by professional data
+      const transformedData = (response.data || []).map(project => ({
+        ...project,
+        title: project.title_c,
+        subtitle: project.subtitle_c,
+        description: project.description_c,
+        imageUrl: project.image_url_c,
+        category: project.category_c,
+        location: project.location_c,
+        duration: project.duration_c,
+        featured: project.featured_c,
+        professionalIds: project.professional_ids_c ? project.professional_ids_c.split(',').map(id => parseInt(id.trim())) : [],
+        features: project.features_c ? project.features_c.split('\n').filter(f => f.trim()) : [],
+        gallery: project.project_images_c ? project.project_images_c.split(',').map(img => img.trim()).filter(img => img) : []
+      }));
+
+      return transformedData;
     } catch (error) {
       console.error("Error fetching projects by professional:", error?.response?.data?.message || error);
       throw error;
@@ -178,7 +251,7 @@ class ProjectService {
       const apperClient = this.getApperClient();
       
       const params = {
-        records: [{
+records: [{
           Name: projectData.name || projectData.title_c || "New Project",
           title_c: projectData.title_c,
           subtitle_c: projectData.subtitle_c,
@@ -189,7 +262,8 @@ class ProjectService {
           duration_c: projectData.duration_c,
           featured_c: projectData.featured_c || false,
           professional_ids_c: projectData.professional_ids_c,
-          features_c: projectData.features_c
+          features_c: projectData.features_c,
+          project_images_c: Array.isArray(projectData.gallery) ? projectData.gallery.join(',') : (projectData.project_images_c || '')
         }]
       };
 
@@ -242,8 +316,9 @@ class ProjectService {
       if (updates.duration_c !== undefined) updateData.duration_c = updates.duration_c;
       if (updates.featured_c !== undefined) updateData.featured_c = updates.featured_c;
       if (updates.professional_ids_c !== undefined) updateData.professional_ids_c = updates.professional_ids_c;
-      if (updates.features_c !== undefined) updateData.features_c = updates.features_c;
-
+if (updates.features_c !== undefined) updateData.features_c = updates.features_c;
+      if (updates.project_images_c !== undefined) updateData.project_images_c = updates.project_images_c;
+      if (updates.gallery !== undefined) updateData.project_images_c = Array.isArray(updates.gallery) ? updates.gallery.join(',') : updates.gallery;
       const params = {
         records: [updateData]
       };

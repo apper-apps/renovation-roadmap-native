@@ -14,8 +14,9 @@ const ProjectShowcase = () => {
     try {
       setLoading(true);
       setError("");
-      const data = await getProjects();
-      setProjects(data.filter(project => project.featured));
+const data = await getProjects();
+      // Filter for featured projects using the correct field name
+      setProjects(data.filter(project => project.featured_c || project.featured));
     } catch (err) {
       setError("Failed to load projects");
     } finally {
