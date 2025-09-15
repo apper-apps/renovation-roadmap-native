@@ -96,15 +96,32 @@ const RenovationRoadmapPage = () => {
                                     <div
                                         className="w-1 h-6 bg-gradient-to-b from-primary to-accent rounded-full mr-3"></div>Key Activities
                                                             </h4>
-                                <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                    {stage.activities.map(
-                                        (activity, idx) => <li key={idx} className="flex items-start bg-gray-50 p-3 rounded-lg">
-                                            <ApperIcon
-                                                name="CheckCircle"
-                                                className="h-5 w-5 text-success mr-3 mt-0.5 flex-shrink-0" />
-                                            <span className="text-gray-700">{activity}</span>
-                                        </li>
-                                    )}
+<ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                    {(() => {
+                                        // Parse activities from string format to array
+                                        let activities = [];
+                                        if (stage.activities_c) {
+                                            try {
+                                                // Try parsing as JSON first
+                                                activities = JSON.parse(stage.activities_c);
+                                            } catch {
+                                                // If not JSON, split by newlines and filter empty lines
+                                                activities = stage.activities_c.split('\n').filter(activity => activity.trim());
+                                            }
+                                        } else if (stage.activities && Array.isArray(stage.activities)) {
+                                            // Fallback for array format
+                                            activities = stage.activities;
+                                        }
+                                        
+                                        return activities.map(
+                                            (activity, idx) => <li key={idx} className="flex items-start bg-gray-50 p-3 rounded-lg">
+                                                <ApperIcon
+                                                    name="CheckCircle"
+                                                    className="h-5 w-5 text-success mr-3 mt-0.5 flex-shrink-0" />
+                                                <span className="text-gray-700">{activity}</span>
+                                            </li>
+                                        );
+                                    })()}
                                 </ul>
                             </div>
                             {/* Enhanced Associated Professionals */}
