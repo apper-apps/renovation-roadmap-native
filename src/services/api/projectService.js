@@ -59,8 +59,8 @@ const response = await apperClient.fetchRecords('project_c', params);
         featured: project.featured_c,
         professionalIds: project.professional_ids_c ? project.professional_ids_c.split(',').map(id => parseInt(id.trim())) : [],
         features: project.features_c ? project.features_c.split('\n').filter(f => f.trim()) : [],
-        // Transform project images from MultiPicklist to array
-        gallery: project.project_images_c ? project.project_images_c.split(',').map(img => img.trim()).filter(img => img) : []
+// Transform project images from MultiPicklist to array for unified Projects table
+        gallery: project.project_images_c ? project.project_images_c.split(',').map(img => img.trim()).filter(img => img) : (project.gallery || [])
       }));
 
       return transformedData;
@@ -112,8 +112,8 @@ const response = await apperClient.getRecordById('project_c', id, params);
           duration: project.duration_c,
           featured: project.featured_c,
           professionalIds: project.professional_ids_c ? project.professional_ids_c.split(',').map(id => parseInt(id.trim())) : [],
-          features: project.features_c ? project.features_c.split('\n').filter(f => f.trim()) : [],
-          gallery: project.project_images_c ? project.project_images_c.split(',').map(img => img.trim()).filter(img => img) : []
+features: project.features_c ? project.features_c.split('\n').filter(f => f.trim()) : (project.features || []),
+          gallery: project.project_images_c ? project.project_images_c.split(',').map(img => img.trim()).filter(img => img) : (project.gallery || [])
         };
       }
 
@@ -177,8 +177,8 @@ const response = await apperClient.fetchRecords('project_c', params);
         duration: project.duration_c,
         featured: project.featured_c,
         professionalIds: project.professional_ids_c ? project.professional_ids_c.split(',').map(id => parseInt(id.trim())) : [],
-        features: project.features_c ? project.features_c.split('\n').filter(f => f.trim()) : [],
-        gallery: project.project_images_c ? project.project_images_c.split(',').map(img => img.trim()).filter(img => img) : []
+features: project.features_c ? project.features_c.split('\n').filter(f => f.trim()) : (project.features || []),
+        gallery: project.project_images_c ? project.project_images_c.split(',').map(img => img.trim()).filter(img => img) : (project.gallery || [])
       }));
 
       return transformedData;
@@ -235,8 +235,8 @@ const response = await apperClient.fetchRecords('project_c', params);
         duration: project.duration_c,
         featured: project.featured_c,
         professionalIds: project.professional_ids_c ? project.professional_ids_c.split(',').map(id => parseInt(id.trim())) : [],
-        features: project.features_c ? project.features_c.split('\n').filter(f => f.trim()) : [],
-        gallery: project.project_images_c ? project.project_images_c.split(',').map(img => img.trim()).filter(img => img) : []
+features: project.features_c ? project.features_c.split('\n').filter(f => f.trim()) : (project.features || []),
+        gallery: project.project_images_c ? project.project_images_c.split(',').map(img => img.trim()).filter(img => img) : (project.gallery || [])
       }));
 
       return transformedData;
@@ -262,7 +262,7 @@ records: [{
           duration_c: projectData.duration_c,
           featured_c: projectData.featured_c || false,
           professional_ids_c: projectData.professional_ids_c,
-          features_c: projectData.features_c,
+features_c: projectData.features_c || (Array.isArray(projectData.features) ? projectData.features.join('\n') : ''),
           project_images_c: Array.isArray(projectData.gallery) ? projectData.gallery.join(',') : (projectData.project_images_c || '')
         }]
       };
@@ -317,6 +317,7 @@ records: [{
       if (updates.featured_c !== undefined) updateData.featured_c = updates.featured_c;
       if (updates.professional_ids_c !== undefined) updateData.professional_ids_c = updates.professional_ids_c;
 if (updates.features_c !== undefined) updateData.features_c = updates.features_c;
+      if (updates.features !== undefined) updateData.features_c = Array.isArray(updates.features) ? updates.features.join('\n') : updates.features;
       if (updates.project_images_c !== undefined) updateData.project_images_c = updates.project_images_c;
       if (updates.gallery !== undefined) updateData.project_images_c = Array.isArray(updates.gallery) ? updates.gallery.join(',') : updates.gallery;
       const params = {

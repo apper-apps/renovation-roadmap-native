@@ -56,8 +56,8 @@ const filteredProjects = selectedFilter === "all"
         project.title?.toLowerCase()?.includes(selectedFilter.toLowerCase())
       );
 
-  const featuredProjects = filteredProjects.filter(project => project.featured);
-  const regularProjects = filteredProjects.filter(project => !project.featured);
+const featuredProjects = filteredProjects.filter(project => project.featured_c === true || project.featured === true);
+  const regularProjects = filteredProjects.filter(project => project.featured_c !== true && project.featured !== true);
   const displayProjects = [...featuredProjects, ...regularProjects];
 
   if (loading) return <Loading />;
