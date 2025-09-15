@@ -45,14 +45,24 @@ const handleClick = () => {
           <div className="text-gray-400 text-sm">Loading...</div>
         </div>
       )}
-      <img 
-        src={imageError ? "/api/placeholder/800/600" : (project.imageUrl || "/api/placeholder/800/600")} 
-        alt={project.title || "Project image"}
+<img 
+        src={imageError ? "/api/placeholder/800/600" : (project.image_url_c || project.imageUrl || "/api/placeholder/800/600")} 
+        alt={project.title_c || project.title || "Project image"}
         className={`w-full h-full object-cover transition-opacity duration-300 ${imageLoading ? 'opacity-0' : 'opacity-100'}`}
         onError={handleImageError}
         onLoad={handleImageLoad}
         style={{ display: imageLoading ? 'none' : 'block' }}
       />
+      
+      {/* Gallery Indicator - Show if project has multiple images */}
+      {project.gallery && project.gallery.length > 0 && (
+        <div className="absolute bottom-2 right-2 bg-black/60 text-white text-xs px-2 py-1 rounded-full flex items-center gap-1">
+          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+            <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
+          </svg>
+          {project.gallery.length + 1}
+        </div>
+      )}
       {imageError && !imageLoading && (
         <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
           <div className="text-center text-gray-500">

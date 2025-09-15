@@ -1,12 +1,13 @@
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ProjectCard from "@/components/molecules/ProjectCard";
-import Loading from "@/components/ui/Loading";
-import Error from "@/components/ui/Error";
-import Empty from "@/components/ui/Empty";
-import ApperIcon from "@/components/ApperIcon";
 import { getProjects } from "@/services/api/projectService";
 import { getProfessionals } from "@/services/api/professionalService";
+import ApperIcon from "@/components/ApperIcon";
+import ProjectShowcase from "@/components/organisms/ProjectShowcase";
+import ProjectCard from "@/components/molecules/ProjectCard";
+import Empty from "@/components/ui/Empty";
+import Loading from "@/components/ui/Loading";
+import Error from "@/components/ui/Error";
 
 const BeInspiredPage = () => {
   const [projects, setProjects] = useState([]);
@@ -93,7 +94,10 @@ const filteredProjects = selectedFilter === "all"
         </div>
 
         {/* Featured Project */}
-{displayProjects.length > 0 && displayProjects[0] && (
+{/* Featured Projects Slider */}
+        <ProjectShowcase />
+        
+        {displayProjects.length > 0 && displayProjects[0] && (
           <div className="mb-12">
             <div className="relative h-96 rounded-2xl overflow-hidden cursor-pointer group"
                  onClick={() => navigate(`/project/${displayProjects[0].Id}`)}>
@@ -136,7 +140,7 @@ const filteredProjects = selectedFilter === "all"
           />
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-{displayProjects.slice(1).map((project) => (
+{displayProjects.map((project) => (
               <div key={project.Id} className="group">
                 <ProjectCard project={project} size="md" />
                 <div className="mt-4">

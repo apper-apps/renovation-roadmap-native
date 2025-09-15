@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { getProjectById } from "@/services/api/projectService";
+import { getProfessionals } from "@/services/api/professionalService";
+import ApperIcon from "@/components/ApperIcon";
+import ProjectCard from "@/components/molecules/ProjectCard";
 import Button from "@/components/atoms/Button";
 import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
-import ApperIcon from "@/components/ApperIcon";
-import { getProjectById } from "@/services/api/projectService";
-import { getProfessionals } from "@/services/api/professionalService";
 
 const ProjectShowcasePage = () => {
   const { id } = useParams();
@@ -70,9 +71,9 @@ const ProjectShowcasePage = () => {
         <div className="max-w-6xl mx-auto">
           {/* Hero Image */}
           <div className="relative h-96 md:h-[500px] rounded-2xl overflow-hidden mb-8">
-            <img 
-              src={project.imageUrl} 
-              alt={project.title}
+<img 
+              src={project.image_url_c || project.imageUrl || "/api/placeholder/800/600"} 
+              alt={project.title_c || project.title}
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent">
@@ -84,7 +85,7 @@ const ProjectShowcasePage = () => {
                   {project.subtitle || "A stunning renovation transformation"}
                 </p>
               </div>
-            </div>
+</div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
