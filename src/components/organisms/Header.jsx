@@ -30,16 +30,12 @@ const handleQuizClick = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-<Link to="/" className="flex items-center space-x-3">
-            <div className="bg-gradient-to-br from-primary via-accent to-secondary p-3 rounded-xl shadow-lg">
-              <ApperIcon name="Home" className="h-8 w-8 text-white" />
-            </div>
-<div className="bg-gradient-to-r from-primary to-accent bg-clip-text">
-              <h1 className="text-2xl font-display font-bold text-accent">
-                Renovation Roadmap
-              </h1>
-              <p className="text-base text-primary/70 font-medium">For Hamilton Homeowners</p>
-            </div>
+<Link to="/" className="flex items-center">
+              <img 
+                src="https://content.app-sources.com/s/286081838088918141/uploads/Brand/RR_primary_logo_sml-6273828.png" 
+                alt="Renovation Roadmap" 
+                className="h-12 w-auto"
+              />
           </Link>
 
           {/* Desktop Navigation */}

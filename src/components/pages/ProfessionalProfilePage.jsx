@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import Button from "@/components/atoms/Button";
 import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
-import ContactForm from "@/components/organisms/ContactForm";
 import ProjectCard from "@/components/molecules/ProjectCard";
 import ApperIcon from "@/components/ApperIcon";
 import { getProfessionalById } from "@/services/api/professionalService";
@@ -93,8 +92,8 @@ useEffect(() => {
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Button
-                      variant="primary"
-onClick={() => document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" })}
+variant="primary"
+                      onClick={() => document.getElementById("embed-form")?.scrollIntoView({ behavior: "smooth" })}
                     >
                       <ApperIcon name="MessageCircle" className="h-4 w-4 mr-2" />
                       Get In Touch
@@ -205,10 +204,29 @@ onClick={() => document.getElementById("contact-form")?.scrollIntoView({ behavio
             </div>
           </div>
 
-          {/* Contact Form */}
-          <div id="contact-form" className="lg:col-span-1">
+{/* Embedded Form */}
+          <div id="embed-form" className="lg:col-span-1">
             <div className="sticky top-8">
-              <ContactForm professional={professional} />
+              <div className="card">
+                <div className="mb-6">
+                  <h3 className="text-2xl font-display font-bold text-primary mb-2">
+                    Get in Touch with {professional.name}
+                  </h3>
+                  <p className="text-gray-600">
+                    Fill out the form below and they'll get back to you within 24 hours.
+                  </p>
+                </div>
+                {professional.embed_code_c ? (
+                  <div 
+                    className="embed-container"
+                    dangerouslySetInnerHTML={{ __html: professional.embed_code_c }}
+                  />
+                ) : (
+                  <div className="text-center py-8 text-gray-500">
+                    <p>Contact form will be available soon.</p>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
