@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getRoadmapStages } from "@/services/api/roadmapService";
-import { getProfessionalById, getProfessionals } from "@/services/api/professionalService";
+import { getProfessionals } from "@/services/api/professionalService";
 import ApperIcon from "@/components/ApperIcon";
 import NewsletterSignup from "@/components/molecules/NewsletterSignup";
 import Button from "@/components/atoms/Button";
@@ -16,7 +16,7 @@ const RenovationRoadmapPage = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const loadData = async () => {
+const loadData = async () => {
     try {
       setLoading(true);
       setError("");
@@ -27,7 +27,8 @@ const RenovationRoadmapPage = () => {
       setStages(stagesData);
       setProfessionals(professionalsData);
     } catch (err) {
-      setError("Failed to load roadmap data");
+      console.error("Error loading roadmap data:", err);
+      setError(err.message || "Failed to load roadmap data");
     } finally {
       setLoading(false);
     }
@@ -41,7 +42,7 @@ if (loading) return <Loading />;
   if (error) return <Error message={error} onRetry={loadData} />;
 
   // Helper function to find professional by ID from loaded professionals array
-  const getProfessionalById = (profId) => {
+const getProfessionalById = (profId) => {
     return professionals.find(prof => prof.Id === parseInt(profId));
   };
 

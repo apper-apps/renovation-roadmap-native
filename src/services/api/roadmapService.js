@@ -274,5 +274,5 @@ export const deleteRoadmapStage = async (id) => {
   }
 };
 
-// Initialize default stages on service load
-ensureDefaultStages();
+// Default stages will be created when getRoadmapStages() is first called
+// This prevents unauthorized API calls during service initialization
