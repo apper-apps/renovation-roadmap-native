@@ -9,7 +9,6 @@ const apperClient = new ApperClient({
 
 const TABLE_NAME = 'quiz_c';
 let quizSteps = []; // Store quiz steps for enhanced quiz management
-const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 export const getQuizzes = async () => {
   try {
