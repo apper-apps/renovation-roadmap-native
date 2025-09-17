@@ -1,6 +1,7 @@
 import mockQuizzes from "@/services/mockData/updatedQuizzes.json";
 
 let quizzes = [...mockQuizzes];
+let quizSteps = []; // Store quiz steps for enhanced quiz management
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 export const getQuizzes = async () => {
@@ -21,9 +22,19 @@ export const createQuiz = async (quizData) => {
     Id: quizzes.length > 0 ? Math.max(...quizzes.map(q => q.Id)) + 1 : 1,
     status: 'draft',
     createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString()
+    updatedAt: new Date().toISOString(),
+    // Enhanced fields for advanced quiz management
+    quizLogic: quizData.quizLogic || {},
+    optionThumbnails: quizData.optionThumbnails || {},
+    conditionalFlow: quizData.conditionalFlow || {}
   };
   quizzes.push(newQuiz);
+  
+  // Create associated quiz steps if provided
+  if (quizData.steps && quizData.steps.length > 0) {
+    await createQuizSteps(newQuiz.Id, quizData.steps);
+  }
+  
   return { ...newQuiz };
 };
 
@@ -37,9 +48,47 @@ export const updateQuiz = async (id, updates) => {
   quizzes[index] = { 
     ...quizzes[index], 
     ...updates, 
-    updatedAt: new Date().toISOString() 
+    updatedAt: new Date().toISOString(),
+    // Update enhanced fields
+    quizLogic: updates.quizLogic || quizzes[index].quizLogic,
+    optionThumbnails: updates.optionThumbnails || quizzes[index].optionThumbnails,
+    conditionalFlow: updates.conditionalFlow || quizzes[index].conditionalFlow
   };
+  
+  // Update quiz steps if provided
+  if (updates.steps) {
+    await updateQuizSteps(quizId, updates.steps);
+  }
+  
   return { ...quizzes[index] };
+};
+
+// Quiz Steps Management
+export const createQuizSteps = async (quizId, steps) => {
+  await delay(300);
+  const newSteps = steps.map((step, index) => ({
+    ...step,
+    Id: Date.now() + index,
+    quiz_c: quizId,
+    order_c: index + 1,
+    createdAt: new Date().toISOString()
+  }));
+  quizSteps.push(...newSteps);
+  return newSteps;
+};
+
+export const updateQuizSteps = async (quizId, steps) => {
+  await delay(300);
+  // Remove existing steps for this quiz
+  quizSteps = quizSteps.filter(step => step.quiz_c !== quizId);
+  // Add updated steps
+  const updatedSteps = await createQuizSteps(quizId, steps);
+  return updatedSteps;
+};
+
+export const getQuizSteps = async (quizId) => {
+  await delay(200);
+  return quizSteps.filter(step => step.quiz_c === quizId);
 };
 
 export const deleteQuiz = async (id) => {

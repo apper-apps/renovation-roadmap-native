@@ -1,17 +1,17 @@
+import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import React from "react";
-import BeInspiredPage from "@/components/pages/BeInspiredPage";
+import Layout from "@/components/organisms/Layout";
 import ProjectShowcasePage from "@/components/pages/ProjectShowcasePage";
-import FAQPage from "@/components/pages/FAQPage";
 import QuizPage from "@/components/pages/QuizPage";
-import QuizzesPage from "@/components/pages/QuizzesPage";
+import HomePage from "@/components/pages/HomePage";
 import ProfessionalProfilePage from "@/components/pages/ProfessionalProfilePage";
 import RenovationRoadmapPage from "@/components/pages/RenovationRoadmapPage";
-import HomePage from "@/components/pages/HomePage";
-import Layout from "@/components/organisms/Layout";
-
+import BeInspiredPage from "@/components/pages/BeInspiredPage";
+import QuizzesPage from "@/components/pages/QuizzesPage";
+import FAQPage from "@/components/pages/FAQPage";
+import QuizAdminPage from "@/components/pages/QuizAdminPage";
 function App() {
   return (
     <BrowserRouter>
@@ -56,7 +56,10 @@ function App() {
             <Layout>
               <ProjectShowcasePage />
             </Layout>
-          } />
+} />
+          <Route path="/admin/quiz/:action/:id?" element={<Layout>
+            <QuizAdminPage />
+          </Layout>} />
         </Routes>
         <ToastContainer 
           position="bottom-right"

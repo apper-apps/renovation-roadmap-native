@@ -12,7 +12,8 @@ const QuizInterface = ({ quizId }) => {
   const [quiz, setQuiz] = useState(null);
   const [professionals, setProfessionals] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState({});
+const [answers, setAnswers] = useState({});
+  const [quizSteps, setQuizSteps] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -57,12 +58,24 @@ const handleAnswer = (questionId, answer) => {
       ...prev,
       [questionId]: answer
     }));
+    
+    // Track quiz step progression
+    const currentStep = quizSteps.find(step => step.quiz_c?.Id === quiz.Id);
+    if (currentStep) {
+      console.log('Quiz step progression tracked:', currentStep);
+    }
   };
 
 
-  const handleNext = () => {
-    if (currentQuestion < quiz.questions.length - 1) {
-      setCurrentQuestion(prev => prev + 1);
+const handleNext = () => {
+    const selectedAnswer = answers[quiz.questions[currentQuestion].Id];
+    const nextIndex = getNextQuestionIndex(currentQuestion, selectedAnswer);
+    
+    if (nextIndex === -1) {
+      // Skip directly to results based on conditional logic
+      calculateResults();
+    } else if (nextIndex < quiz.questions.length) {
+      setCurrentQuestion(nextIndex);
     } else {
       calculateResults();
     }
@@ -382,7 +395,7 @@ if (showResults) {
     );
   }
 
-// Handle conditional logic and determine next question
+// Enhanced conditional logic handling with quiz steps support
   const getNextQuestionIndex = (currentIndex, selectedAnswer) => {
     const currentQ = quiz.questions[currentIndex];
     
@@ -398,14 +411,27 @@ if (showResults) {
         const nextIndex = quiz.questions.findIndex(q => q.Id === nextQuestionId);
         return nextIndex !== -1 ? nextIndex : currentIndex + 1;
       }
+      
+      // Handle quiz step-based logic
+      if (logic.nextStep) {
+        const stepIndex = quizSteps.findIndex(step => step.Id === logic.nextStep);
+        if (stepIndex !== -1) {
+          return stepIndex;
+        }
+      }
     }
     
     return currentIndex + 1;
   };
 
-  const currentQ = quiz.questions[currentQuestion];
+const currentQ = quiz.questions[currentQuestion];
   const progress = ((currentQuestion + 1) / quiz.questions.length) * 100;
   const canContinue = answers[currentQ.Id];
+  
+  // Get question thumbnail image
+  const getQuestionImage = (questionIndex) => {
+    return currentQ.thumbnailUrl || `/api/placeholder/400/200`;
+  };
 
   // Save progress to session storage
 
@@ -477,13 +503,16 @@ if (showResults) {
               <div className="flex items-start flex-1">
                 <div className="mr-3 flex-shrink-0">
                   <img 
-                    src={`/api/placeholder/48/48`} 
-                    alt={`Option ${index + 1}`}
-                    className="w-12 h-12 rounded-lg object-cover border border-gray-200"
+                    src={currentQ.optionThumbnails?.[index] || `/api/placeholder/48/48`} 
+                    alt={`Option ${index + 1} thumbnail`}
+                    className="w-12 h-12 rounded-lg object-cover border border-gray-200 shadow-sm"
+                    onError={(e) => {
+                      e.target.src = `/api/placeholder/48/48`;
+                    }}
                   />
                 </div>
                 <span 
-                  className="text-gray-700 flex-1"
+                  className="text-gray-700 flex-1 leading-relaxed"
                   id={`option-${index}-description`}
                 >
                   {option}
@@ -507,7 +536,7 @@ if (showResults) {
         </Button>
 
         <div className="flex items-center space-x-3">
-          {/* Skip option for optional questions */}
+{/* Skip option for optional questions */}
           {currentQ.optional && (
             <Button
               variant="ghost"
@@ -521,9 +550,10 @@ if (showResults) {
                   calculateResults();
                 }
               }}
-              className="text-gray-500 hover:text-gray-700"
+              className="text-gray-500 hover:text-gray-700 transition-colors"
             >
-              Skip
+              <ApperIcon name="SkipForward" className="h-4 w-4 mr-2" />
+              Skip Question
             </Button>
           )}
           

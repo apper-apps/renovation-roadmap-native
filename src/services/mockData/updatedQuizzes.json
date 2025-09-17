@@ -6,15 +6,28 @@
     "estimatedTime": 5,
     "imageUrl": "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&h=400&fit=crop&crop=center",
     "status": "published",
+    "quizLogic": {
+      "flowType": "conditional",
+      "complexity": "advanced",
+      "skipLogic": true,
+      "branching": true
+    },
     "questions": [
       {
         "Id": 1,
         "question": "What type of project are you planning?",
+        "thumbnailUrl": "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=200&fit=crop&crop=center",
         "options": [
           "Major structural changes or additions",
           "Interior updates and styling", 
           "New home construction",
           "Kitchen or bathroom renovation"
+        ],
+        "optionThumbnails": [
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48"
         ],
         "conditionalLogic": {
           "Major structural changes or additions": { "nextQuestion": 2, "skipTo": null },
@@ -32,11 +45,18 @@
       {
         "Id": 2,
         "question": "Do you need building consent?",
+        "thumbnailUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=400&h=200&fit=crop&crop=center",
         "options": [
           "Yes, definitely",
           "Not sure - need guidance",
           "No, minor work only",
           "What's building consent?"
+        ],
+        "optionThumbnails": [
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48"
         ],
         "conditionalLogic": {
           "Yes, definitely": { "nextQuestion": 5, "skipTo": null },
@@ -54,11 +74,18 @@
       {
         "Id": 3,
         "question": "What's your main focus for interior work?",
+        "thumbnailUrl": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=200&fit=crop&crop=center",
         "options": [
           "Complete style transformation",
           "Functional layout improvements", 
           "Material and finish selection",
           "Color and decor coordination"
+        ],
+        "optionThumbnails": [
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48"
         ],
         "conditionalLogic": {
           "Complete style transformation": { "nextQuestion": 5, "skipTo": null },
@@ -76,11 +103,18 @@
       {
         "Id": 4,
         "question": "What's your renovation timeline?",
+        "thumbnailUrl": "https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=400&h=200&fit=crop&crop=center",
         "options": [
           "Start immediately - ready to go",
           "Within 3 months - planning stage",
           "6-12 months - exploring options",
           "Just getting ideas for now"
+        ],
+        "optionThumbnails": [
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48"
         ],
         "conditionalLogic": {
           "Start immediately - ready to go": { "nextQuestion": 5, "skipTo": null },
@@ -98,11 +132,18 @@
       {
         "Id": 5,
         "question": "What's your biggest concern about this project?",
+        "thumbnailUrl": "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=200&fit=crop&crop=center",
         "options": [
           "Getting design and permits right",
           "Managing construction process",
           "Staying within budget",
           "Coordinating multiple trades"
+        ],
+        "optionThumbnails": [
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48"
         ],
         "scoring": {
           "Getting design and permits right": { "architect": 3, "planner": 2 },
@@ -158,15 +199,28 @@
     "estimatedTime": 6,
     "imageUrl": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=400&fit=crop&crop=center",
     "status": "published",
+    "quizLogic": {
+      "flowType": "linear",
+      "complexity": "standard",
+      "skipLogic": false,
+      "branching": false
+    },
     "questions": [
       {
         "Id": 1,
         "question": "How do you approach big decisions?",
+        "thumbnailUrl": "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=200&fit=crop&crop=center",
         "options": [
           "Research everything thoroughly first",
           "Go with my gut feeling",
           "Ask lots of people for advice",
           "Plan every detail meticulously"
+        ],
+        "optionThumbnails": [
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48"
         ],
         "scoring": {
           "Research everything thoroughly first": { "analyst": 3 },
@@ -178,11 +232,18 @@
       {
         "Id": 2,
         "question": "What excites you most about renovating?",
+        "thumbnailUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=400&h=200&fit=crop&crop=center",
         "options": [
           "The planning and design process",
           "Seeing the transformation happen",
           "Having the perfect finished result",
           "Adding value to my property"
+        ],
+        "optionThumbnails": [
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48"
         ],
         "scoring": {
           "The planning and design process": { "analyst": 2, "perfectionist": 2 },
@@ -194,11 +255,18 @@
       {
         "Id": 3,
         "question": "How hands-on do you want to be?",
+        "thumbnailUrl": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=200&fit=crop&crop=center",
         "options": [
           "I want to DIY as much as possible",
           "I'll help but hire for complex work",
           "I'll manage but not do physical work",
           "I want professionals to handle everything"
+        ],
+        "optionThumbnails": [
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48"
         ],
         "scoring": {
           "I want to DIY as much as possible": { "intuitive": 3, "collaborative": 1 },
@@ -250,15 +318,28 @@
     "estimatedTime": 4,
     "imageUrl": "https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=600&h=400&fit=crop&crop=center",
     "status": "published",
+    "quizLogic": {
+      "flowType": "assessment",
+      "complexity": "standard",
+      "skipLogic": false,
+      "branching": false
+    },
     "questions": [
       {
         "Id": 1,
         "question": "Have you set a realistic budget?",
+        "thumbnailUrl": "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=200&fit=crop&crop=center",
         "options": [
           "Yes, with 20% contingency included",
           "Yes, but no contingency buffer",
           "Rough estimate only",
           "Not yet - still exploring"
+        ],
+        "optionThumbnails": [
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48"
         ],
         "scoring": {
           "Yes, with 20% contingency included": { "ready": 3 },
@@ -270,11 +351,18 @@
       {
         "Id": 2,
         "question": "Do you have accommodation plans during renovation?",
+        "thumbnailUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=400&h=200&fit=crop&crop=center",
         "options": [
           "Alternative accommodation arranged",
           "Staged renovation - staying put",
           "We'll rough it and stay",
           "Haven't thought about it"
+        ],
+        "optionThumbnails": [
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48"
         ],
         "scoring": {
           "Alternative accommodation arranged": { "ready": 3 },
@@ -286,11 +374,18 @@
       {
         "Id": 3,
         "question": "How clear is your vision?",
+        "thumbnailUrl": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=200&fit=crop&crop=center",
         "options": [
           "Detailed plans and specifications",
           "Clear concept with flexibility",
           "General ideas and inspiration",
           "Open to suggestions"
+        ],
+        "optionThumbnails": [
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48"
         ],
         "scoring": {
           "Detailed plans and specifications": { "ready": 3 },
@@ -328,15 +423,28 @@
     "estimatedTime": 6,
     "imageUrl": "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=400&fit=crop&crop=center",
     "status": "published",
+    "quizLogic": {
+      "flowType": "scoring",
+      "complexity": "standard",
+      "skipLogic": false,
+      "branching": false
+    },
     "questions": [
       {
         "Id": 1,
         "question": "How do you primarily use your kitchen?",
+        "thumbnailUrl": "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=200&fit=crop&crop=center",
         "options": [
           "Serious cooking and meal prep",
           "Family hub and homework central", 
           "Entertaining friends and family",
           "Quick meals and coffee"
+        ],
+        "optionThumbnails": [
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48"
         ],
         "scoring": {
           "Serious cooking and meal prep": { "galley": 2, "ushaped": 3 },
@@ -348,11 +456,18 @@
       {
         "Id": 2,
         "question": "What's your kitchen style preference?",
+        "thumbnailUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=400&h=200&fit=crop&crop=center",
         "options": [
           "Modern and minimalist",
           "Traditional farmhouse",
           "Industrial chic", 
           "Cozy cottage"
+        ],
+        "optionThumbnails": [
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48"
         ],
         "scoring": {
           "Modern and minimalist": { "galley": 2, "island": 2 },
@@ -364,11 +479,18 @@
       {
         "Id": 3,
         "question": "What's most important to you?",
+        "thumbnailUrl": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=200&fit=crop&crop=center",
         "options": [
           "Maximum storage space",
           "Large island for gathering",
           "Efficient work triangle",
           "Easy maintenance and cleanup"
+        ],
+        "optionThumbnails": [
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48",
+          "/api/placeholder/48/48"
         ],
         "scoring": {
           "Maximum storage space": { "ushaped": 3, "lshaped": 2 },
