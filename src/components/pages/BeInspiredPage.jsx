@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getProjects } from "@/services/api/projectService";
-import { getProfessionals } from "@/services/api/professionalService";
-import ApperIcon from "@/components/ApperIcon";
-import ProjectShowcase from "@/components/organisms/ProjectShowcase";
 import ProjectCard from "@/components/molecules/ProjectCard";
-import Empty from "@/components/ui/Empty";
 import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
+import Empty from "@/components/ui/Empty";
+import ApperIcon from "@/components/ApperIcon";
+import { getProjects } from "@/services/api/projectService";
+import { getProfessionals } from "@/services/api/professionalService";
 
 const BeInspiredPage = () => {
   const [projects, setProjects] = useState([]);
@@ -50,14 +49,12 @@ const BeInspiredPage = () => {
 const filteredProjects = selectedFilter === "all" 
     ? projects 
     : projects.filter(project => 
-        project.category_c?.toLowerCase()?.includes(selectedFilter.toLowerCase()) ||
         project.category?.toLowerCase()?.includes(selectedFilter.toLowerCase()) ||
-        project.title_c?.toLowerCase()?.includes(selectedFilter.toLowerCase()) ||
         project.title?.toLowerCase()?.includes(selectedFilter.toLowerCase())
       );
 
-const featuredProjects = filteredProjects.filter(project => project.featured_c === true || project.featured === true);
-  const regularProjects = filteredProjects.filter(project => project.featured_c !== true && project.featured !== true);
+  const featuredProjects = filteredProjects.filter(project => project.featured);
+  const regularProjects = filteredProjects.filter(project => !project.featured);
   const displayProjects = [...featuredProjects, ...regularProjects];
 
   if (loading) return <Loading />;
@@ -96,15 +93,12 @@ const featuredProjects = filteredProjects.filter(project => project.featured_c =
         </div>
 
         {/* Featured Project */}
-{/* Featured Projects Slider */}
-        <ProjectShowcase />
-        
-        {displayProjects.length > 0 && displayProjects[0] && (
+{displayProjects.length > 0 && displayProjects[0] && (
           <div className="mb-12">
             <div className="relative h-96 rounded-2xl overflow-hidden cursor-pointer group"
                  onClick={() => navigate(`/project/${displayProjects[0].Id}`)}>
-<img 
-                src={displayProjects[0].image_url_c || displayProjects[0].imageUrl || "/api/placeholder/800/600"}
+              <img 
+                src={displayProjects[0].imageUrl || "/api/placeholder/800/600"} 
                 alt={displayProjects[0].title || "Project image"}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
@@ -142,49 +136,40 @@ const featuredProjects = filteredProjects.filter(project => project.featured_c =
           />
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-{displayProjects.map((project) => (
+{displayProjects.slice(1).map((project) => (
               <div key={project.Id} className="group">
                 <ProjectCard project={project} size="md" />
                 <div className="mt-4">
                   <h3 className="text-lg font-display font-semibold text-primary mb-2 group-hover:text-accent transition-colors">
-                    {project.title_c || project.title || "Untitled Project"}
+                    {project.title || "Untitled Project"}
                   </h3>
                   <p className="text-gray-600 text-sm line-clamp-2">
-                    {project.description_c || project.description || "No description available"}
+                    {project.description || "No description available"}
                   </p>
-                  {/* Show gallery count if project has multiple images */}
-                  {project.gallery && project.gallery.length > 0 && (
-                    <div className="mt-2 text-xs text-gray-500 flex items-center gap-1">
-                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
-                      </svg>
-                      {project.gallery.length + 1} images
-                    </div>
-                  )}
-                  {(project.professional_ids_c || project.professionalIds) && (
+                  {project.professionalIds && Array.isArray(project.professionalIds) && project.professionalIds.length > 0 && (
                     <div className="mt-3 flex items-center">
                       <span className="text-xs text-gray-500 mr-2">By:</span>
                       <div className="flex -space-x-1">
-                        {(project.professionalIds || (project.professional_ids_c ? project.professional_ids_c.split(',').map(id => parseInt(id.trim())) : [])).slice(0, 3).map((profId) => {
+                        {project.professionalIds.slice(0, 3).map((profId) => {
                           const professional = professionals?.find(p => p.Id === profId);
                           return professional ? (
 <div key={profId} className="relative group/tooltip">
                               <img 
-                                src={professional.logo_url_c || professional.logoUrl || "/api/placeholder/32/32"} 
-                                alt={`${professional.Name || professional.name || "Professional"} logo`}
+                                src={professional.logoUrl || "/api/placeholder/32/32"} 
+                                alt={`${professional.name || "Professional"} logo`}
                                 className="h-8 w-8 rounded-full border-2 border-white object-contain bg-white"
                               />
                               <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover/tooltip:block">
                                 <div className="bg-gray-900 text-white text-xs py-1 px-2 rounded whitespace-nowrap">
-                                  {professional.Name || professional.name || "Unknown Professional"}
+                                  {professional.name || "Unknown Professional"}
                                 </div>
                               </div>
                             </div>
                           ) : null;
                         })}
-                        {(project.professionalIds || (project.professional_ids_c ? project.professional_ids_c.split(',') : [])).length > 3 && (
+                        {project.professionalIds.length > 3 && (
                           <div className="h-6 w-6 rounded-full border-2 border-white bg-gray-100 flex items-center justify-center">
-                            <span className="text-xs text-gray-600">+{(project.professionalIds || project.professional_ids_c.split(',')).length - 3}</span>
+                            <span className="text-xs text-gray-600">+{project.professionalIds.length - 3}</span>
                           </div>
                         )}
                       </div>

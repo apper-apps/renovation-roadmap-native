@@ -32,14 +32,9 @@ function App() {
               <QuizzesPage />
             </Layout>
           } />
-<Route path="/quiz/:id" element={
+          <Route path="/quiz/:id" element={
             <Layout>
               <QuizPage />
-            </Layout>
-          } />
-          <Route path="/roadmap/admin" element={
-            <Layout>
-              <RenovationRoadmapPage />
             </Layout>
           } />
           <Route path="/faq" element={

@@ -14,9 +14,8 @@ const ProjectShowcase = () => {
     try {
       setLoading(true);
       setError("");
-const data = await getProjects();
-      // Filter for featured projects using database field name with fallback
-      setProjects(data.filter(project => project.featured_c === true || project.featured === true));
+      const data = await getProjects();
+      setProjects(data.filter(project => project.featured));
     } catch (err) {
       setError("Failed to load projects");
     } finally {
@@ -42,10 +41,10 @@ const data = await getProjects();
         >
           <div className={`flex space-x-6 ${!isPaused ? 'animate-slide' : ''}`}>
             {/* First set of projects */}
-{projects.map((project) => (
+            {projects.map((project) => (
               <ProjectCard key={project.Id} project={project} size="lg" />
             ))}
-            {/* Duplicate for seamless scroll */}
+            {/* Duplicate for seamless loop */}
             {projects.map((project) => (
               <ProjectCard key={`duplicate-${project.Id}`} project={project} size="lg" />
             ))}

@@ -77,85 +77,7 @@ const settings = {
   },
 
   // Update site settings in database
-async initializeSiteSettings() {
-    try {
-      const apperClient = this.getApperClient();
-      
-      // Check if settings already exist
-      const existingSettings = await this.getSiteSettings();
-      if (existingSettings && Object.keys(existingSettings).length > 3) {
-        return existingSettings;
-      }
-
-      // Create default site settings records
-      const defaultSettingsRecords = [
-        {
-          Name: "Site Logo Setting",
-          setting_name_c: "site_logo",
-          setting_value_c: "https://content.app-sources.com/s/286081838088918141/uploads/Brand/RR_primary_logo_sml-6273828.png",
-          setting_type_c: "text"
-        },
-        {
-          Name: "Favicon Setting", 
-          setting_name_c: "favicon_url",
-          setting_value_c: "/vite.svg",
-          setting_type_c: "text"
-        },
-        {
-          Name: "Site Name Setting",
-          setting_name_c: "site_name", 
-          setting_value_c: "Renovation Roadmap",
-          setting_type_c: "text"
-        },
-        {
-          Name: "Home Page Content Setting",
-          setting_name_c: "home_page_content",
-          setting_value_c: "Welcome to Renovation Roadmap - Your trusted partner in home renovation projects.",
-          setting_type_c: "text"
-        },
-        {
-          Name: "Footer Content Setting",
-          setting_name_c: "footer_content",
-          setting_value_c: "© 2024 Renovation Roadmap. All rights reserved.",
-          setting_type_c: "text"
-        }
-      ];
-
-      const params = {
-        records: defaultSettingsRecords
-      };
-
-      const response = await apperClient.createRecord('site_settings_c', params);
-
-      if (!response.success) {
-        console.error(response.message);
-        throw new Error(response.message);
-      }
-
-      if (response.results) {
-        const failedRecords = response.results.filter(result => !result.success);
-        
-        if (failedRecords.length > 0) {
-          console.error(`Failed to initialize site settings ${failedRecords.length} records:${JSON.stringify(failedRecords)}`);
-        }
-      }
-
-      // Return the newly created settings in expected format
-      return {
-        siteLogo: "https://content.app-sources.com/s/286081838088918141/uploads/Brand/RR_primary_logo_sml-6273828.png",
-        faviconUrl: "/vite.svg", 
-        siteName: "Renovation Roadmap",
-        homePageContent: "Welcome to Renovation Roadmap - Your trusted partner in home renovation projects.",
-        footerContent: "© 2024 Renovation Roadmap. All rights reserved."
-      };
-
-    } catch (error) {
-      console.error("Error initializing site settings:", error?.response?.data?.message || error);
-      throw error;
-    }
-  },
-
-  async updateSiteSettings(settings) {
+async updateSiteSettings(settings) {
     try {
       const apperClient = this.getApperClient();
 
@@ -190,7 +112,6 @@ async initializeSiteSettings() {
 
       if (settings.siteLogo !== undefined) {
         recordsToUpdate.push({
-          Name: "Site Logo Setting Updated",
           setting_name_c: "site_logo",
           setting_value_c: settings.siteLogo,
           setting_type_c: "text"
@@ -199,7 +120,6 @@ async initializeSiteSettings() {
 
       if (settings.faviconUrl !== undefined) {
         recordsToUpdate.push({
-          Name: "Favicon Setting Updated",
           setting_name_c: "favicon_url",
           setting_value_c: settings.faviconUrl,
           setting_type_c: "text"
@@ -208,7 +128,6 @@ async initializeSiteSettings() {
 
       if (settings.siteName !== undefined) {
         recordsToUpdate.push({
-          Name: "Site Name Setting Updated",
           setting_name_c: "site_name",
           setting_value_c: settings.siteName,
           setting_type_c: "text"
@@ -217,7 +136,6 @@ async initializeSiteSettings() {
 
       if (settings.homePageContent !== undefined) {
         recordsToUpdate.push({
-          Name: "Home Page Content Updated",
           setting_name_c: "home_page_content",
           setting_value_c: settings.homePageContent,
           setting_type_c: "text"
@@ -226,7 +144,6 @@ async initializeSiteSettings() {
 
       if (settings.footerContent !== undefined) {
         recordsToUpdate.push({
-          Name: "Footer Content Updated",
           setting_name_c: "footer_content",
           setting_value_c: settings.footerContent,
           setting_type_c: "text"
@@ -279,8 +196,8 @@ async resetToDefaults() {
       footerContent: "Connecting homeowners with New Zealand's finest renovation professionals. Your dream home starts with knowing who to call first."
     };
 
-await this.initializeSiteSettings();
-    return this.getSiteSettings();
+    await this.updateSiteSettings(defaultSettings);
+    return defaultSettings;
   }
 };
 
